@@ -1,0 +1,76 @@
+---
+title: Untitled
+subtitle: "Subtitle with [**EMPHASIS**]{style='color:#3595ac;'} here"
+description: Subtitle with emphasis here
+format:
+  360-embed-html: default
+author: James Goldie
+date: last-modified
+resources:
+  # - electricity-transition-featuremedia.png
+  # - style.json
+  # - tiles/*
+  # - tiles/*/*/*.pbf
+  # - font/*
+  # - font/*/*
+---
+
+{{< include _popup-buttons.qmd >}}
+
+```{ojs}
+//| label: libraries
+
+r = require.alias({
+  maplibregl: "maplibre-gl@2.1.9/dist/maplibre-gl.js",
+  // h3: {},
+  // deck: "deck.gl@latest/dist.min.js"
+});
+
+maplibregl = r("maplibregl").catch(() => window["maplibregl"]);
+// deck = r("deck");
+```
+
+```{ojs}
+//| label: map
+
+/* this is a bit different to regular mapbox/maplibre instantiation
+   it lets have the map react to other values in the document, like
+   a button or a timer, without reinstantiating!
+   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */
+   
+viewof map = {
+  let container = html`<div style="position: absolute; left: 0; top: 0; height: 100vh; width: 100%;" />`;
+
+  // Give the container dimensions.
+  yield container;
+
+  // Create the \`map\` object with the mapboxgl.Map constructor, referencing
+  // the container div
+  let map = new maplibregl.Map({
+    container,
+    bounds: [[-110, -55], [160, -10]],
+    // pitch: 30,
+    antialias: true,
+    style: "style.json"
+  });
+
+  // on map load:
+  // - dispatch its value back to ojs
+  // - add the deck.gl layer to the map
+  // - add a prop to the layer that adds/removes a popup from the map
+  //   (we can't do this on initial layer def because the map isn't ready yet)
+  map.on("load", () => {
+    container.value = map;
+    container.dispatchEvent(new CustomEvent("input"));
+    
+    map.addLayer(electricityBubbles);
+
+    // also configure the automatically-create deck instance
+    // electricityBubbles.deck.setProps({ pickingRadius: 10 });
+    
+  });
+
+}
+```
+
+{{< include _popup-dialogs.qmd >}}
