@@ -19,3 +19,5 @@ Thumbs.db
 # (let's see whether we need them)
 /news/tiles/postcodes/10
 /news/tiles/postcodes/11
+/out/news/tiles/postcodes/10
+/out/news/tiles/postcodes/11

@@ -8,9 +8,9 @@ author: James Goldie
 date: last-modified
 resources:
   # - electricity-transition-featuremedia.png
-  # - style.json
-  # - tiles/*
-  # - tiles/*/*/*.pbf
+  - style.json
+  - tiles/postcodes/*
+  - tiles/postcodes/*/*/*.pbf
   # - font/*
   # - font/*/*
 ---
@@ -63,7 +63,7 @@ viewof map = {
     container.value = map;
     container.dispatchEvent(new CustomEvent("input"));
     
-    map.addLayer(electricityBubbles);
+    // map.addLayer(electricityBubbles);
 
     // also configure the automatically-create deck instance
     // electricityBubbles.deck.setProps({ pickingRadius: 10 });
