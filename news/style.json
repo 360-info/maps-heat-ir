@@ -35,7 +35,7 @@
         "visibility": "visible"
       },
       "source": "postcodes",
-      "source-layer": "postcodes-directory-zg",
+      "source-layer": "postcodeswgs84",
       "maxzoom": 15
     },
     {
@@ -52,13 +52,13 @@
         "visibility": "visible"
       },
       "source": "postcodes",
-      "source-layer": "postcodes-directory-zg",
+      "source-layer": "postcodeswgs84",
       "maxzoom": 15
     }
   ],
   "bearing": 0,
   "sources": {
-    "maplibre": {
+    "postcodes": {
       "url": "tiles/postcodes/tiles.json",
       "type": "vector"
     }

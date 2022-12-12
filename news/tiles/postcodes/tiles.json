@@ -1,6 +1,6 @@
 {
     "tilejson": "2.0.0",
-    "name": "maplibre",
+    "name": "postcodes",
     "type": "baselayer",
     "scale": "1.000000",
     "bounds": [
@@ -20,7 +20,7 @@
     "description": "",
     "vector_layers": [
         {
-            "id": "postcodes-directory-zg",
+            "id": "postcodeswgs84",
             "fields": {
                 "id": "Integer64",
                 "POA_CODE_2021": "String",
@@ -50,6 +50,6 @@
         1
     ],
     "tiles": [
-        "https://news.360info-heatmaps-narclim.pages.dev/news/tiles/postcodes/{z}/{x}/{y}.pbf"
+        "http://localhost:9000/news/tiles/postcodes/{z}/{x}/{y}.pbf"
     ]
 }
