@@ -114,6 +114,42 @@ filteredProjections = projections
 ```{ojs}
 //| label: update-map
 
+yellowRedFill = [
+  0,   "#ffffb2",
+  5,   "#fed976",
+  10,  "#feb24c",
+  20,  "#fd8d3c",
+  40,  "#f03b20",
+  80,  "#bd0026"
+]
+yellowRedStroke = [
+  0,   "#ffff46",
+  5,   "#fdbf1a",
+  10,  "#f68e01",
+  20,  "#e86302",
+  40,  "#bf240d",
+  80,  "#8e001c"
+]
+
+rainbowFill = [
+  0,   "#3288bd",
+  7,   "#99d594",
+  14,  "#e6f598",
+  30,  "#ffffbf",
+  90,  "#fee08b",
+  180, "#fc8d59",
+  366, "#d53e4f"
+]
+rainbowStroke = [
+  0,   "#26668e",
+  7,   "#5bbc53",
+  14,  "#d0ec3e",
+  30,  "#ffff4f",
+  90,  "#fdc62a",
+  180, "#fa5305",
+  366, "#a92534"
+]
+
 // when the filtered data changes, rejoin it to the map tiles and update the
 // colour scheme
 updateMapData = {
@@ -138,35 +174,26 @@ updateMapData = {
       console.log(actualScenario + ": switching to yellow-red")
       map.setPaintProperty("postcode-colors", "fill-color",
         ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
-          [
-            "interpolate",
-            ["linear"],
-            ["feature-state", "ensmean"],
-            0,   "#ffffb2",
-            5,   "#fed976",
-            10,  "#feb24c",
-            20,  "#fd8d3c",
-            40,  "#f03b20",
-            80,  "#bd0026"
-          ]
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...yellowRedFill]
+        ]);
+        map.setPaintProperty("postcode-colors", "fill-outline-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...yellowRedStroke]
         ]);
     } else {
       // historical: diverging rainbow
       console.log(actualScenario + ": switching to rainbow")
       map.setPaintProperty("postcode-colors", "fill-color",
         ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
-          [
-            "interpolate",
-            ["linear"],
-            ["feature-state", "ensmean"],
-            0,   "#3288bd",
-            7,   "#99d594",
-            14,  "#e6f598",
-            30,  "#ffffbf",
-            90,  "#fee08b",
-            180, "#fc8d59",
-            366, "#d53e4f"
-          ]
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...rainbowFill]
+        ]);
+      map.setPaintProperty("postcode-colors", "fill-outline-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...rainbowStroke]
         ]);
   }
 
