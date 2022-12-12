@@ -114,6 +114,7 @@ filteredProjections = projections
 ```{ojs}
 //| label: update-map
 
+  20,  "#fd8d3c",
 // when the filtered data changes, rejoin it to the map tiles and update the
 // colour scheme
 updateMapData = {
@@ -138,35 +139,14 @@ updateMapData = {
       console.log(actualScenario + ": switching to yellow-red")
       map.setPaintProperty("postcode-colors", "fill-color",
         ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
-          [
-            "interpolate",
-            ["linear"],
-            ["feature-state", "ensmean"],
-            0,   "#ffffb2",
-            5,   "#fed976",
-            10,  "#feb24c",
-            20,  "#fd8d3c",
-            40,  "#f03b20",
-            80,  "#bd0026"
-          ]
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
         ]);
     } else {
       // historical: diverging rainbow
       console.log(actualScenario + ": switching to rainbow")
       map.setPaintProperty("postcode-colors", "fill-color",
         ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
-          [
-            "interpolate",
-            ["linear"],
-            ["feature-state", "ensmean"],
-            0,   "#3288bd",
-            7,   "#99d594",
-            14,  "#e6f598",
-            30,  "#ffffbf",
-            90,  "#fee08b",
-            180, "#fc8d59",
-            366, "#d53e4f"
-          ]
+      map.setPaintProperty("postcode-colors", "fill-outline-color",
         ]);
   }
 
