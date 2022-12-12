@@ -21,48 +21,10 @@
         "visibility": "visible"
       },
       "maxzoom": 24
-    },
-    {
-      "id": "postcodes-fill",
-      "type": "fill",
-      "paint": {
-        "fill-color": "#cccccc"
-      },
-      "filter": [
-        "all"
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "source": "postcodes",
-      "source-layer": "postcodeswgs84",
-      "maxzoom": 15
-    },
-    {
-      "id": "postcodes-boundary",
-      "type": "line",
-      "paint": {
-        "line-color": "#aaaaaa",
-        "line-width": 1,
-        "line-opacity": 1
-      },
-      "layout": {
-        "line-cap": "round",
-        "line-join": "round",
-        "visibility": "visible"
-      },
-      "source": "postcodes",
-      "source-layer": "postcodeswgs84",
-      "maxzoom": 15
     }
   ],
   "bearing": 0,
-  "sources": {
-    "postcodes": {
-      "url": "tiles/postcodes/tiles.json",
-      "type": "vector"
-    }
-  },
+  "sources": { },
   "version": 8,
   "metadata": {
   }

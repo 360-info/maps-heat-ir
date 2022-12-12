@@ -7,7 +7,7 @@ format:
 author: James Goldie
 date: last-modified
 resources:
-  # - electricity-transition-featuremedia.png
+  # - news-heat-postcodes-featuremedia.png
   - style.json
   - tiles/postcodes/*
   - tiles/postcodes/*/*/*.pbf
@@ -56,21 +56,85 @@ viewof map = {
 
   // on map load:
   // - dispatch its value back to ojs
-  // - add the deck.gl layer to the map
   // - add a prop to the layer that adds/removes a popup from the map
   //   (we can't do this on initial layer def because the map isn't ready yet)
   map.on("load", () => {
     container.value = map;
     container.dispatchEvent(new CustomEvent("input"));
-    
-    // map.addLayer(electricityBubbles);
 
-    // also configure the automatically-create deck instance
-    // electricityBubbles.deck.setProps({ pickingRadius: 10 });
-    
+    map.addSource("postcodes", {
+      "url": "tiles/postcodes/tiles.json",
+      "type": "vector",
+      "promoteId": "POA_NAME_2021"
+    });
+
+    map.addLayer({
+      id: "postcode-colors",
+      source: "postcodes",
+      "source-layer": "postcodeswgs84",
+      type: "fill",
+      paint: {
+        "fill-color":
+          ["case", ["==", ["feature-state", "ensmean"], null], "#0000ff",
+            [
+              "interpolate",
+              ["linear"],
+              ["feature-state", "ensmean"],
+              0,   "#ffffb2",
+              73,  "#fed976",
+              146, "#feb24c",
+              219, "#fd8d3c",
+              292, "#f03b20",
+              366, "#bd0026"
+            ]
+          ]
+      }
+    })
   });
 
 }
 ```
+
+
+```{ojs}
+//| label: get-data
+projections = FileAttachment("/data/news-stats-postcodes-long.csv")
+  .csv({ typed: true });
+
+// filter data here (note postcodes need to be re-padded b/c observable's type
+// inference makes them numeric)
+filteredProjections = projections
+  .filter(
+    d => (d.file_grid == "AUS-44") && (d.file_scenario == "historical"))
+  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }))
+```
+
+```{ojs}
+//| label: update-map
+
+// fills = map.getLayer("postcode-colors")
+
+// pass the new data to the tiles whenever it re-filters from user interaction
+filteredProjections.forEach(row => {
+  map.setFeatureState(
+    {
+      source: "postcodes",
+      sourceLayer: "postcodeswgs84",
+      id: row.postcode,
+    },
+    {
+      ensmean: row.ensmean,
+      ensmax: row.ensmax,
+      ensmin: row.ensmin
+    }
+  );
+
+  // console.log(map.getFeatureState("postcodes", {
+  //   sourceLayer: "postcodeswgs84",
+  //   id: row.postcode
+  // }));
+});
+```
+
 
 {{< include _popup-dialogs.qmd >}}
