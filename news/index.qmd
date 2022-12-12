@@ -80,14 +80,14 @@ viewof map = {
 //| label: controls
 //| classes: inputForm
 
-viewof selectedPeriod = Inputs.radio(["1995", "2030", "2050"], { label: "Year", value: "1995" })
+viewof selectedPeriod = Inputs.radio(["1995", "2030", "2050"], { value: "1995" })
 
 viewof selectedScenario = Inputs.radio(
   new Map([
     ["Medium emissions", "rcp45diff"],
     ["High emissions", "rcp85diff"]
   ]),
-  { label: "Scenario", value: "rcp45diff", disabled: selectedPeriod == "1995" })
+  { value: "rcp45diff", disabled: selectedPeriod == "1995" })
 
 // override scenario with historical if 1995 is selected
 actualScenario = (selectedPeriod == "1995" ? "historical" : selectedScenario)
@@ -165,14 +165,7 @@ updateMapData = {
             30,  "#ffffbf",
             90,  "#fee08b",
             180, "#fc8d59",
-            366, "#d53e4f",
-            // 0,   "#8c510a",
-            // 7,   "#d8b365",
-            // 14,  "#c7eae5",
-            // 30,  "#f6e8c3",
-            // 90,  "#f5f5f5",
-            // 180, "#5ab4ac",
-            // 366, "#01665e"
+            366, "#d53e4f"
           ]
         ]);
   }
