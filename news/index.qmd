@@ -48,8 +48,8 @@ viewof map = {
   // the container div
   let map = new maplibregl.Map({
     container,
-    bounds: [[-110, -55], [160, -10]],
-    // pitch: 30,
+    center: [133, -28],
+    zoom: 3.8,
     antialias: true,
     style: "style.json"
   });
