@@ -50,6 +50,6 @@
         1
     ],
     "tiles": [
-        "http://news-newtiles.360info-heatmaps-narclim.dev/news/tiles/postcodes/{z}/{x}/{y}.pbf"
+        "https://news-newtiles.360info-heatmaps-narclim.dev/news/tiles/postcodes/{z}/{x}/{y}.pbf"
     ]
 }
