@@ -14,3 +14,8 @@ Thumbs.db
 
 # quarto
 /.quarto/
+
+# for now: don't commit zoom 10 and 11 of the postcode tiles
+# (let's see whether we need them)
+/news/tiles/postcodes/10
+/news/tiles/postcodes/11

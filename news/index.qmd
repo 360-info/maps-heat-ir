@@ -1,0 +1,204 @@
+---
+title: Untitled
+subtitle: "Subtitle with [**EMPHASIS**]{style='color:#3595ac;'} here"
+description: Subtitle with emphasis here
+format:
+  360-embed-html: default
+author: James Goldie
+date: last-modified
+resources:
+  # - news-heat-postcodes-featuremedia.png
+  - style.json
+  - tiles/postcodes/*
+  - tiles/postcodes/*/*/*.pbf
+  # - font/*
+  # - font/*/*
+---
+
+{{< include _popup-buttons.qmd >}}
+
+```{ojs}
+//| label: libraries
+
+r = require.alias({
+  maplibregl: "maplibre-gl@2.1.9/dist/maplibre-gl.js",
+});
+
+maplibregl = r("maplibregl").catch(() => window["maplibregl"]);
+```
+
+```{ojs}
+//| label: map
+
+/* this is a bit different to regular mapbox/maplibre instantiation
+   it lets have the map react to other values in the document, like
+   a button or a timer, without reinstantiating!
+   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */
+   
+viewof map = {
+  let container = html`<div style="position: absolute; left: 0; top: 0; height: 100vh; width: 100%;" />`;
+
+  // Give the container dimensions.
+  yield container;
+
+  // Create the \`map\` object with the mapboxgl.Map constructor, referencing
+  // the container div
+  let map = new maplibregl.Map({
+    container,
+    center: [133, -28],
+    zoom: 3.8,
+    antialias: true,
+    style: "style.json"
+  });
+
+  // on map load:
+  // - dispatch its value back to ojs
+  // - add a prop to the layer that adds/removes a popup from the map
+  //   (we can't do this on initial layer def because the map isn't ready yet)
+  map.on("load", () => {
+    container.value = map;
+    container.dispatchEvent(new CustomEvent("input"));
+
+    map.addSource("postcodes", {
+      "url": "tiles/postcodes/tiles.json",
+      "type": "vector",
+      "promoteId": "POA_NAME21"
+    });
+
+    map.addLayer({
+      id: "postcode-colors",
+      source: "postcodes",
+      "source-layer": "postcodeswgs84",
+      type: "fill"
+    });
+  });
+
+}
+```
+
+```{ojs}
+//| label: controls
+//| classes: inputForm
+
+viewof selectedPeriod = Inputs.radio(["1995", "2030", "2050"], { value: "1995" })
+
+viewof selectedScenario = Inputs.radio(
+  new Map([
+    ["Medium emissions", "rcp45diff"],
+    ["High emissions", "rcp85diff"]
+  ]),
+  { value: "rcp45diff", disabled: selectedPeriod == "1995" })
+
+// override scenario with historical if 1995 is selected
+actualScenario = (selectedPeriod == "1995" ? "historical" : selectedScenario)
+
+```
+
+
+```{ojs}
+//| label: get-data
+projections = FileAttachment("/data/news-stats-postcodes-long.csv")
+  .csv({ typed: true });
+
+// filter data here (note postcodes need to be re-padded b/c observable's type
+// inference makes them numeric)
+filteredProjections = projections
+  .filter(
+    d =>
+      (d.file_grid == "AUS-44") &&
+      (d.file_period == selectedPeriod) &&
+      (d.file_scenario == actualScenario))
+  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
+```
+
+```{ojs}
+//| label: update-map
+
+yellowRedFill = [
+  0,   "#ffffb2",
+  5,   "#fed976",
+  10,  "#feb24c",
+  20,  "#fd8d3c",
+  40,  "#f03b20",
+  80,  "#bd0026"
+]
+yellowRedStroke = [
+  0,   "#ffff46",
+  5,   "#fdbf1a",
+  10,  "#f68e01",
+  20,  "#e86302",
+  40,  "#bf240d",
+  80,  "#8e001c"
+]
+
+rainbowFill = [
+  0,   "#3288bd",
+  7,   "#99d594",
+  14,  "#e6f598",
+  30,  "#ffffbf",
+  90,  "#fee08b",
+  180, "#fc8d59",
+  366, "#d53e4f"
+]
+rainbowStroke = [
+  0,   "#26668e",
+  7,   "#5bbc53",
+  14,  "#d0ec3e",
+  30,  "#ffff4f",
+  90,  "#fdc62a",
+  180, "#fa5305",
+  366, "#a92534"
+]
+
+// when the filtered data changes, rejoin it to the map tiles and update the
+// colour scheme
+updateMapData = {
+
+  filteredProjections.forEach(row => {
+    map.setFeatureState(
+      {
+        source: "postcodes",
+        sourceLayer: "postcodeswgs84",
+        id: row.postcode,
+      },
+      {
+        ensmean: row.ensmean,
+        ensmax: row.ensmax,
+        ensmin: row.ensmin
+      }
+    );
+  });
+
+  if (actualScenario.endsWith("diff")) {
+      // extra days in future: yellow-red
+      console.log(actualScenario + ": switching to yellow-red")
+      map.setPaintProperty("postcode-colors", "fill-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...yellowRedFill]
+        ]);
+        map.setPaintProperty("postcode-colors", "fill-outline-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...yellowRedStroke]
+        ]);
+    } else {
+      // historical: diverging rainbow
+      console.log(actualScenario + ": switching to rainbow")
+      map.setPaintProperty("postcode-colors", "fill-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...rainbowFill]
+        ]);
+      map.setPaintProperty("postcode-colors", "fill-outline-color",
+        ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
+          ["interpolate", ["linear"], ["feature-state", "ensmean"],
+            ...rainbowStroke]
+        ]);
+  }
+
+
+}
+```
+
+{{< include _popup-dialogs.qmd >}}
