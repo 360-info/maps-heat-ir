@@ -367,68 +367,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="115" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 114;"><span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="co">// when the filtered data changes, rejoin it to the map tiles and update the</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="co">// colour scheme</span></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>updateMapData <span class="op">=</span> {</span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  filteredProjections<span class="op">.</span><span class="fu">forEach</span>(row <span class="kw">=&gt;</span> {</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>        <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>        <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">postcode</span><span class="op">,</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmean</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmean</span><span class="op">,</span></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmax</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmax</span><span class="op">,</span></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmin</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmin</span></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<div id="update-map" class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="117" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 116;"><span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>yellowRedFill <span class="op">=</span> [</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffffb2"</span><span class="op">,</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fed976"</span><span class="op">,</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#feb24c"</span><span class="op">,</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#fd8d3c"</span><span class="op">,</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#f03b20"</span><span class="op">,</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#bd0026"</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>yellowRedStroke <span class="op">=</span> [</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffff46"</span><span class="op">,</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fdbf1a"</span><span class="op">,</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#f68e01"</span><span class="op">,</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#e86302"</span><span class="op">,</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#bf240d"</span><span class="op">,</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#8e001c"</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (actualScenario<span class="op">.</span><span class="fu">endsWith</span>(<span class="st">"diff"</span>)) {</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>      <span class="co">// extra days in future: yellow-red</span></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to yellow-red"</span>)</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>          [</span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>            <span class="st">"interpolate"</span><span class="op">,</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>            [<span class="st">"linear"</span>]<span class="op">,</span></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>            [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>            <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffffb2"</span><span class="op">,</span></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>            <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fed976"</span><span class="op">,</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>            <span class="dv">10</span><span class="op">,</span>  <span class="st">"#feb24c"</span><span class="op">,</span></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>            <span class="dv">20</span><span class="op">,</span>  <span class="st">"#fd8d3c"</span><span class="op">,</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>            <span class="dv">40</span><span class="op">,</span>  <span class="st">"#f03b20"</span><span class="op">,</span></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>            <span class="dv">80</span><span class="op">,</span>  <span class="st">"#bd0026"</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>          ]</span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>      <span class="co">// historical: diverging rainbow</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to rainbow"</span>)</span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>          [</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>            <span class="st">"interpolate"</span><span class="op">,</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>            [<span class="st">"linear"</span>]<span class="op">,</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>            [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>            <span class="dv">0</span><span class="op">,</span>   <span class="st">"#3288bd"</span><span class="op">,</span></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>            <span class="dv">7</span><span class="op">,</span>   <span class="st">"#99d594"</span><span class="op">,</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>            <span class="dv">14</span><span class="op">,</span>  <span class="st">"#e6f598"</span><span class="op">,</span></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>            <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffffbf"</span><span class="op">,</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>            <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fee08b"</span><span class="op">,</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>            <span class="dv">180</span><span class="op">,</span> <span class="st">"#fc8d59"</span><span class="op">,</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>            <span class="dv">366</span><span class="op">,</span> <span class="st">"#d53e4f"</span></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>          ]</span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>rainbowFill <span class="op">=</span> [</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#3288bd"</span><span class="op">,</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#99d594"</span><span class="op">,</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#e6f598"</span><span class="op">,</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffffbf"</span><span class="op">,</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fee08b"</span><span class="op">,</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fc8d59"</span><span class="op">,</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#d53e4f"</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>rainbowStroke <span class="op">=</span> [</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#26668e"</span><span class="op">,</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#5bbc53"</span><span class="op">,</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#d0ec3e"</span><span class="op">,</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffff4f"</span><span class="op">,</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fdc62a"</span><span class="op">,</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fa5305"</span><span class="op">,</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#a92534"</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="co">// when the filtered data changes, rejoin it to the map tiles and update the</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="co">// colour scheme</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>updateMapData <span class="op">=</span> {</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>  filteredProjections<span class="op">.</span><span class="fu">forEach</span>(row <span class="kw">=&gt;</span> {</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>        <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>        <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">postcode</span><span class="op">,</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmean</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmean</span><span class="op">,</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmax</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmax</span><span class="op">,</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmin</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmin</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
 <span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="update-map" class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="declaration">
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (actualScenario<span class="op">.</span><span class="fu">endsWith</span>(<span class="st">"diff"</span>)) {</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>      <span class="co">// extra days in future: yellow-red</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to yellow-red"</span>)</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedFill]</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>        map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedStroke]</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>      <span class="co">// historical: diverging rainbow</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to rainbow"</span>)</span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowFill]</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowStroke]</span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="update-map-1">
+<div id="ojs-cell-5-1" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-2">
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-3">
+<div id="ojs-cell-5-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-4">
+<div id="ojs-cell-5-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-5">
+<div id="ojs-cell-5-5" data-nodetype="declaration">
+
+</div>
 </div>
 </div>
 </div>
@@ -497,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\nr = require.alias({\n  maplibregl: \"maplibre-gl@2.1.9/dist/maplibre-gl.js\",\n});\n\nmaplibregl = r(\"maplibregl\").catch(() => window[\"maplibregl\"]);\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n/* this is a bit different to regular mapbox/maplibre instantiation\n   it lets have the map react to other values in the document, like\n   a button or a timer, without reinstantiating!\n   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */\n   \nviewof map = {\n  let container = html`<div style=\"position: absolute; left: 0; top: 0; height: 100vh; width: 100%;\" />`;\n\n  // Give the container dimensions.\n  yield container;\n\n  // Create the \\`map\\` object with the mapboxgl.Map constructor, referencing\n  // the container div\n  let map = new maplibregl.Map({\n    container,\n    center: [133, -28],\n    zoom: 3.8,\n    antialias: true,\n    style: \"style.json\"\n  });\n\n  // on map load:\n  // - dispatch its value back to ojs\n  // - add a prop to the layer that adds/removes a popup from the map\n  //   (we can't do this on initial layer def because the map isn't ready yet)\n  map.on(\"load\", () => {\n    container.value = map;\n    container.dispatchEvent(new CustomEvent(\"input\"));\n\n    map.addSource(\"postcodes\", {\n      \"url\": \"tiles/postcodes/tiles.json\",\n      \"type\": \"vector\",\n      \"promoteId\": \"POA_NAME21\"\n    });\n\n    map.addLayer({\n      id: \"postcode-colors\",\n      source: \"postcodes\",\n      \"source-layer\": \"postcodeswgs84\",\n      type: \"fill\"\n    });\n  });\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"\nviewof selectedPeriod = Inputs.radio([\"1995\", \"2030\", \"2050\"], { value: \"1995\" })\n\nviewof selectedScenario = Inputs.radio(\n  new Map([\n    [\"Medium emissions\", \"rcp45diff\"],\n    [\"High emissions\", \"rcp85diff\"]\n  ]),\n  { value: \"rcp45diff\", disabled: selectedPeriod == \"1995\" })\n\n// override scenario with historical if 1995 is selected\nactualScenario = (selectedPeriod == \"1995\" ? \"historical\" : selectedScenario)\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"projections = FileAttachment(\"/data/news-stats-postcodes-long.csv\")\n  .csv({ typed: true });\n\n// filter data here (note postcodes need to be re-padded b/c observable's type\n// inference makes them numeric)\nfilteredProjections = projections\n  .filter(\n    d =>\n      (d.file_grid == \"AUS-44\") &&\n      (d.file_period == selectedPeriod) &&\n      (d.file_scenario == actualScenario))\n  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"\n// when the filtered data changes, rejoin it to the map tiles and update the\n// colour scheme\nupdateMapData = {\n\n  filteredProjections.forEach(row => {\n    map.setFeatureState(\n      {\n        source: \"postcodes\",\n        sourceLayer: \"postcodeswgs84\",\n        id: row.postcode,\n      },\n      {\n        ensmean: row.ensmean,\n        ensmax: row.ensmax,\n        ensmin: row.ensmin\n      }\n    );\n  });\n\n  if (actualScenario.endsWith(\"diff\")) {\n      // extra days in future: yellow-red\n      console.log(actualScenario + \": switching to yellow-red\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\n            \"interpolate\",\n            [\"linear\"],\n            [\"feature-state\", \"ensmean\"],\n            0,   \"#ffffb2\",\n            5,   \"#fed976\",\n            10,  \"#feb24c\",\n            20,  \"#fd8d3c\",\n            40,  \"#f03b20\",\n            80,  \"#bd0026\"\n          ]\n        ]);\n    } else {\n      // historical: diverging rainbow\n      console.log(actualScenario + \": switching to rainbow\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\n            \"interpolate\",\n            [\"linear\"],\n            [\"feature-state\", \"ensmean\"],\n            0,   \"#3288bd\",\n            7,   \"#99d594\",\n            14,  \"#e6f598\",\n            30,  \"#ffffbf\",\n            90,  \"#fee08b\",\n            180, \"#fc8d59\",\n            366, \"#d53e4f\"\n          ]\n        ]);\n  }\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"micro = require(\"micromodal@0.4.10\")\nmicro.init({\n  awaitOpenAnimation: true,\n  awaitCloseAnimation: true\n});\n"},{"methodName":"interpretQuiet","source":"shinyInput('map')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPeriod')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedScenario')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\nr = require.alias({\n  maplibregl: \"maplibre-gl@2.1.9/dist/maplibre-gl.js\",\n});\n\nmaplibregl = r(\"maplibregl\").catch(() => window[\"maplibregl\"]);\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n/* this is a bit different to regular mapbox/maplibre instantiation\n   it lets have the map react to other values in the document, like\n   a button or a timer, without reinstantiating!\n   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */\n   \nviewof map = {\n  let container = html`<div style=\"position: absolute; left: 0; top: 0; height: 100vh; width: 100%;\" />`;\n\n  // Give the container dimensions.\n  yield container;\n\n  // Create the \\`map\\` object with the mapboxgl.Map constructor, referencing\n  // the container div\n  let map = new maplibregl.Map({\n    container,\n    center: [133, -28],\n    zoom: 3.8,\n    antialias: true,\n    style: \"style.json\"\n  });\n\n  // on map load:\n  // - dispatch its value back to ojs\n  // - add a prop to the layer that adds/removes a popup from the map\n  //   (we can't do this on initial layer def because the map isn't ready yet)\n  map.on(\"load\", () => {\n    container.value = map;\n    container.dispatchEvent(new CustomEvent(\"input\"));\n\n    map.addSource(\"postcodes\", {\n      \"url\": \"tiles/postcodes/tiles.json\",\n      \"type\": \"vector\",\n      \"promoteId\": \"POA_NAME21\"\n    });\n\n    map.addLayer({\n      id: \"postcode-colors\",\n      source: \"postcodes\",\n      \"source-layer\": \"postcodeswgs84\",\n      type: \"fill\"\n    });\n  });\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"\nviewof selectedPeriod = Inputs.radio([\"1995\", \"2030\", \"2050\"], { value: \"1995\" })\n\nviewof selectedScenario = Inputs.radio(\n  new Map([\n    [\"Medium emissions\", \"rcp45diff\"],\n    [\"High emissions\", \"rcp85diff\"]\n  ]),\n  { value: \"rcp45diff\", disabled: selectedPeriod == \"1995\" })\n\n// override scenario with historical if 1995 is selected\nactualScenario = (selectedPeriod == \"1995\" ? \"historical\" : selectedScenario)\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"projections = FileAttachment(\"/data/news-stats-postcodes-long.csv\")\n  .csv({ typed: true });\n\n// filter data here (note postcodes need to be re-padded b/c observable's type\n// inference makes them numeric)\nfilteredProjections = projections\n  .filter(\n    d =>\n      (d.file_grid == \"AUS-44\") &&\n      (d.file_period == selectedPeriod) &&\n      (d.file_scenario == actualScenario))\n  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"\nyellowRedFill = [\n  0,   \"#ffffb2\",\n  5,   \"#fed976\",\n  10,  \"#feb24c\",\n  20,  \"#fd8d3c\",\n  40,  \"#f03b20\",\n  80,  \"#bd0026\"\n]\nyellowRedStroke = [\n  0,   \"#ffff46\",\n  5,   \"#fdbf1a\",\n  10,  \"#f68e01\",\n  20,  \"#e86302\",\n  40,  \"#bf240d\",\n  80,  \"#8e001c\"\n]\n\nrainbowFill = [\n  0,   \"#3288bd\",\n  7,   \"#99d594\",\n  14,  \"#e6f598\",\n  30,  \"#ffffbf\",\n  90,  \"#fee08b\",\n  180, \"#fc8d59\",\n  366, \"#d53e4f\"\n]\nrainbowStroke = [\n  0,   \"#26668e\",\n  7,   \"#5bbc53\",\n  14,  \"#d0ec3e\",\n  30,  \"#ffff4f\",\n  90,  \"#fdc62a\",\n  180, \"#fa5305\",\n  366, \"#a92534\"\n]\n\n// when the filtered data changes, rejoin it to the map tiles and update the\n// colour scheme\nupdateMapData = {\n\n  filteredProjections.forEach(row => {\n    map.setFeatureState(\n      {\n        source: \"postcodes\",\n        sourceLayer: \"postcodeswgs84\",\n        id: row.postcode,\n      },\n      {\n        ensmean: row.ensmean,\n        ensmax: row.ensmax,\n        ensmin: row.ensmin\n      }\n    );\n  });\n\n  if (actualScenario.endsWith(\"diff\")) {\n      // extra days in future: yellow-red\n      console.log(actualScenario + \": switching to yellow-red\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedFill]\n        ]);\n        map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedStroke]\n        ]);\n    } else {\n      // historical: diverging rainbow\n      console.log(actualScenario + \": switching to rainbow\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowFill]\n        ]);\n      map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowStroke]\n        ]);\n  }\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"micro = require(\"micromodal@0.4.10\")\nmicro.init({\n  awaitOpenAnimation: true,\n  awaitCloseAnimation: true\n});\n"},{"methodName":"interpretQuiet","source":"shinyInput('map')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPeriod')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedScenario')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../news";
