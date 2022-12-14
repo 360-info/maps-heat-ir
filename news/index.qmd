@@ -1,11 +1,9 @@
 ---
-title: Untitled
-subtitle: "Subtitle with [**EMPHASIS**]{style='color:#3595ac;'} here"
+title: Future heat
+# subtitle: "Subtitle with [**EMPHASIS**]{style='color:#3595ac;'} here"
 description: Subtitle with emphasis here
 format:
   360-embed-html: default
-author: James Goldie
-date: last-modified
 resources:
   # - news-heat-postcodes-featuremedia.png
   - style.json
@@ -301,14 +299,27 @@ function zoomToPostcode(postcode) {
   
 
   // TODO - update info panel
+  MicroModal.show("modal-focused-postcode")
 
 }
 ```
 
+<!-- the panel with further postcode-specific information pops up as a modal -->
+
+::::::: {#modal-focused-postcode .modal .micromodal-slide aria-hidden="true"}
+:::::: {.modal__overlay tabindex="-1" data-micromodal-close="true"}
+::::: {.modal__container role="dialog" aria-modal="true" aria-labelledby="modal-focused-postcode-title"}
+
+<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+
+<header>
+## ${selectedPostcode.POA_NAME21} {#modal-focused-postcode-title}
+</header>
+
+:::: {#modal-focused-postcode-content}
 ```{ojs}
 //| label: info-panel
-//| classes: focusPanel
-
+// classes: focusPanel
 focusedPostcodeProjections = projections
   .filter(
       d =>
@@ -318,7 +329,11 @@ focusedPostcodeProjections = projections
     // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
 
 viewof infoTable = Inputs.table(focusedPostcodeProjections)
-
 ```
+::::
+
+:::::
+::::::
+:::::::
 
 {{< include _popup-dialogs.qmd >}}
