@@ -9,6 +9,7 @@ date: last-modified
 resources:
   # - news-heat-postcodes-featuremedia.png
   - style.json
+  - stripes.png
   - tiles/postcodes/*
   - tiles/postcodes/*/*/*.pbf
   # - font/*
@@ -65,13 +66,33 @@ viewof map = {
       "promoteId": "POA_NAME21"
     });
 
+    // this layer shades all postcodes
     map.addLayer({
       id: "postcode-colors",
       source: "postcodes",
       "source-layer": "postcodeswgs84",
       type: "fill"
     });
+
+    // add pattern for focused postcodes
+    map.loadImage("stripes.png", function(err, image) {
+      if (err) throw err;
+      map.addImage("focusStripes", image);
+    });
+
+    // TODO - add an extra stripey layer on top for the highlighted postcode
+    map.addLayer({
+      id: "postcode-focused",
+      source: "postcodes",
+      "source-layer": "postcodeswgs84",
+      type: "fill",
+      "filter": ["==", ["feature-state", "isFocus"], true],
+        "paint": {
+            "fill-pattern": "focusStripes",
+        }
+    });
   });
+
 
 }
 ```
@@ -91,7 +112,32 @@ viewof selectedScenario = Inputs.radio(
 
 // override scenario with historical if 1995 is selected
 actualScenario = (selectedPeriod == "1995" ? "historical" : selectedScenario)
+```
 
+```{ojs}
+//| label: area-search-controls
+//| classes: areaInputForm
+
+// start with a search box to narrow postcodes and suburbs down
+viewof areaSearch = Inputs.search(postcodeSuburbMap, {
+  placeholder: "Enter your postcode or suburb"
+});
+
+// display a menu of results and a search button when we're down to 30 results
+
+viewof selectedPostcode =
+  areaSearch.length > 0 && areaSearch.length < 30 ?
+    Inputs.select(areaSearch, {
+      format: d => `${d.SAL_NAME21} (${d.POA_NAME21})`
+    }) :
+    md``
+
+viewof goBtn =
+  areaSearch.length > 0 && areaSearch.length < 30 ?
+    Inputs.button("Go", {
+      reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)
+    }) :
+  md``
 ```
 
 
@@ -99,6 +145,10 @@ actualScenario = (selectedPeriod == "1995" ? "historical" : selectedScenario)
 //| label: get-data
 projections = FileAttachment("/data/news-stats-postcodes-long.csv")
   .csv({ typed: true });
+
+postcodeSuburbMap = FileAttachment("/data/postcode-suburb-map.csv")
+  .csv();
+// postcodeList = FileAttachment("/data/postcode-list.csv").csv();
 
 // filter data here (note postcodes need to be re-padded b/c observable's type
 // inference makes them numeric)
@@ -177,7 +227,7 @@ updateMapData = {
           ["interpolate", ["linear"], ["feature-state", "ensmean"],
             ...yellowRedFill]
         ]);
-        map.setPaintProperty("postcode-colors", "fill-outline-color",
+      map.setPaintProperty("postcode-colors", "fill-outline-color",
         ["case", ["==", ["feature-state", "ensmean"], null], "#666666",
           ["interpolate", ["linear"], ["feature-state", "ensmean"],
             ...yellowRedStroke]
@@ -197,6 +247,60 @@ updateMapData = {
         ]);
   }
 
+  // also set fill pattern if highlighted
+  // map.setPaintProperty("postcode-colors", "fill-patterm",
+  //     ["case", ["==", ["feature-state", "isFocus"], true],
+  //       "focusStripes",
+  //       // null?
+  //     ]);
+
+
+}
+```
+
+```{ojs}
+//| label: zoom-to-postcode-fn
+function zoomToPostcode(postcode) {
+
+  // TODO - stop highlighting previously selected postcode
+  
+  // get the postcode's feature
+  const targetPostcodeFeature = map.querySourceFeatures("postcodes", {
+    sourceLayer: "postcodeswgs84",   // postcodeswgs84?
+    filter: ["==", "POA_NAME21", postcode]
+  });
+
+  if (targetPostcodeFeature.length != 1) {
+    console.error("Can only zoom to 1 postcode at a time, not ",
+      targetPostcodeFeature.length);
+  }
+
+  // get the feature's geometry
+  const geom = targetPostcodeFeature[0].geometry.coordinates[0];
+
+  // reduce the geometry to bounds
+  const postcodeBounds = geom.reduce(
+    (accum, current) => accum.extend(current),        
+    new maplibregl.LngLatBounds(geom[0], geom[0]));
+
+  // zoom to postcode
+  map.fitBounds(postcodeBounds, {
+    padding: {top: 40, bottom:30, left: 10, right: 10},
+    maxZoom: 12
+  });
+
+  // highlight postcode?
+  map.setFeatureState(
+    {
+      source: "postcodes",
+      sourceLayer: "postcodeswgs84",
+      id: postcode,
+    },
+    { inFocus: true }
+  );
+  
+
+  // TODO - update info panel
 
 }
 ```

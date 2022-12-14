@@ -55,7 +55,17 @@ header#title-block-header {
   position: absolute;
   bottom: 0px;
   background-color: #00000066;
-  color: #ffffff;
+  color: white;
+  padding: 8px;
+  width: calc(100vw - 16px);
+  margin-bottom: 0;
+}
+
+.areaInputForm {
+  z-index: 1000;
+  position: absolute;
+  top: 50px;
+  color: black;
   padding: 8px;
   width: calc(100vw - 16px);
   margin-bottom: 0;
