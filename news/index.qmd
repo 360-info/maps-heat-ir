@@ -81,16 +81,16 @@ viewof map = {
     });
 
     // TODO - add an extra stripey layer on top for the highlighted postcode
-    map.addLayer({
-      id: "postcode-focused",
-      source: "postcodes",
-      "source-layer": "postcodeswgs84",
-      type: "fill",
-      "filter": ["==", ["feature-state", "isFocus"], true],
-        "paint": {
-            "fill-pattern": "focusStripes",
-        }
-    });
+    // map.addLayer({
+    //   id: "postcode-focused",
+    //   source: "postcodes",
+    //   "source-layer": "postcodeswgs84",
+    //   type: "fill",
+    //   "filter": ["==", ["feature-state", "isFocus"], true],
+    //     "paint": {
+    //         "fill-pattern": "focusStripes",
+    //     }
+    // });
   });
 
 
@@ -134,7 +134,7 @@ viewof selectedPostcode =
 
 viewof goBtn =
   areaSearch.length > 0 && areaSearch.length < 30 ?
-    Inputs.button("Go", {
+    Inputs.button(`Go`, {
       reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)
     }) :
   md``
@@ -303,6 +303,22 @@ function zoomToPostcode(postcode) {
   // TODO - update info panel
 
 }
+```
+
+```{ojs}
+//| label: info-panel
+//| classes: focusPanel
+
+focusedPostcodeProjections = projections
+  .filter(
+      d =>
+        // (d.file_grid == "AUS-44") &&
+        (d.geo_name == selectedPostcode.POA_NAME21)
+        )
+    // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
+
+viewof infoTable = Inputs.table(focusedPostcodeProjections)
+
 ```
 
 {{< include _popup-dialogs.qmd >}}

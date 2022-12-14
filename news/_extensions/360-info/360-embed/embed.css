@@ -70,3 +70,14 @@ header#title-block-header {
   width: calc(100vw - 16px);
   margin-bottom: 0;
 }
+
+.focusPanel {
+  z-index: 1000;
+  position: absolute;
+  top: 150px;
+  background-color: #ffffffcc;
+  color: black;
+  padding: 8px;
+  width: calc(100vw - 16px);
+  margin-bottom: 0;
+}
