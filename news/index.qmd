@@ -319,6 +319,7 @@ function zoomToPostcode(postcode) {
 
 <header>
 ## ${selectedPostcode.POA_NAME21} {#modal-focused-postcode-title}
+#### ${suburbsInPostcode}
 </header>
 
 :::: {#modal-focused-postcode-content}
@@ -333,8 +334,43 @@ focusedPostcodeProjections = projections
         )
     // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
 
-viewof infoTable = Inputs.table(focusedPostcodeProjections)
+// which suburbs are in this postcode?
+suburbsInPostcode = postcodeSuburbMap
+  .filter(d => d.POA_NAME21 == selectedPostcode.POA_NAME21)
+  .map(d => d.SAL_NAME21)
+  .join(", ")
+
+// display info as a table (just for dianostic purposes)
+// viewof infoTable = Inputs.table(focusedPostcodeProjections)
+
+// get the different scenarios out
+figuresNow = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "historical")
+figures2030Med = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp45" && d.file_period == "2030")
+figures2030MedDiff = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp45diff" && d.file_period == "2030")
+figures2050Med = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp45" && d.file_period == "2050")
+figures2050MedDiff = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp45diff" && d.file_period == "2050")
+
+figures2030High = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp85" && d.file_period == "2030")
+figures2030HighDiff = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp85diff" && d.file_period == "2030")
+figures2050High = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp85" && d.file_period == "2050")
+figures2050HighDiff = focusedPostcodeProjections
+  .filter(d => d.file_scenario == "rcp85diff" && d.file_period == "2050")
 ```
+
+**Recently:** up to **${figuresNow[0].ensmin} to ${figuresNow[0].ensmax}** 35°C+ days
+
+Up to **an extra ${figures2030MedDiff[0].ensmin} to ${figures2030MedDiff[0].ensmax}** 35°C+ days in a typical year by 2030 under **medium emissions**, and **an extra ${figures2050MedDiff[0].ensmin} to ${figures2050MedDiff[0].ensmax}** by 2050.
+
+Up to **an extra ${figures2030HighDiff[0].ensmin} to ${figures2030HighDiff[0].ensmax}** 35°C+ days in a typical year by 2030 under **High emissions**, and **an extra ${figures2050HighDiff[0].ensmin} to ${figures2050HighDiff[0].ensmax}** by 2050.
+
 ::::
 
 :::::
