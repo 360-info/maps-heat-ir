@@ -146,7 +146,7 @@ viewof goBtn =
 
 ```{ojs}
 //| label: get-data
-projections = FileAttachment("/data/news-stats-postcodes-long.csv")
+projections = FileAttachment("/data/news-stats-postcodes-short.csv")
   .csv({ typed: true });
 
 postcodeSuburbMap = FileAttachment("/data/postcode-suburb-map.csv")
@@ -158,7 +158,6 @@ postcodeSuburbMap = FileAttachment("/data/postcode-suburb-map.csv")
 filteredProjections = projections
   .filter(
     d =>
-      (d.file_grid == "AUS-44") &&
       (d.file_period == selectedPeriod) &&
       (d.file_scenario == actualScenario))
   .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
@@ -328,10 +327,7 @@ function zoomToPostcode(postcode) {
 // classes: focusPanel
 focusedPostcodeProjections = projections
   .filter(
-      d =>
-        // (d.file_grid == "AUS-44") &&
-        (d.geo_name == selectedPostcode.POA_NAME21)
-        )
+      d => d.geo_name == selectedPostcode.POA_NAME21)
     // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
 
 // which suburbs are in this postcode?

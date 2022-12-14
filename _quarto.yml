@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: out
   resources:
-    - /data/news-stats-postcodes-long.csv
+    - /data/news-stats-postcodes-short.csv
     - /data/postcode-suburb-map.csv
   
 # only re-render if the source changes or if we specifically render that file
