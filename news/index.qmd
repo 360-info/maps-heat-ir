@@ -44,10 +44,15 @@ viewof map = {
   // the container div
   let map = new maplibregl.Map({
     container,
-    center: [133, -28],
-    zoom: 3.8,
+    // center: [133, -28],
+    bounds: [[111, -46], [155, -9]],
+    // zoom: 3.8,
+    // minZoom: 1,
+    maxZoom: 14,
     antialias: true,
-    style: "style.json"
+    style: "style.json",
+    attributionControl: false,
+    maxBounds: [[105, -48], [160, -5]],
   });
 
   // on map load:
