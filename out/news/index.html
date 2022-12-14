@@ -115,6 +115,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="20" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 19;"><span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>micro <span class="op">=</span> <span class="pp">require</span>(<span class="st">"micromodal@0.4.10"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>micro<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitOpenAnimation</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitCloseAnimation</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 <div class="modalpanel">
 <div class="modalpanelitems">
 <!-- check https://icons.getbootstrap.com for icons! -->
@@ -229,434 +250,434 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   });
 </script>
 <div id="libraries" class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="24" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 23;"><span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> require<span class="op">.</span><span class="fu">alias</span>({</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">maplibregl</span><span class="op">:</span> <span class="st">"maplibre-gl@2.1.9/dist/maplibre-gl.js"</span><span class="op">,</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>maplibregl <span class="op">=</span> <span class="fu">r</span>(<span class="st">"maplibregl"</span>)<span class="op">.</span><span class="fu">catch</span>(() <span class="kw">=&gt;</span> <span class="bu">window</span>[<span class="st">"maplibregl"</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="32" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 31;"><span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> require<span class="op">.</span><span class="fu">alias</span>({</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">maplibregl</span><span class="op">:</span> <span class="st">"maplibre-gl@2.1.9/dist/maplibre-gl.js"</span><span class="op">,</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>maplibregl <span class="op">=</span> <span class="fu">r</span>(<span class="st">"maplibregl"</span>)<span class="op">.</span><span class="fu">catch</span>(() <span class="kw">=&gt;</span> <span class="bu">window</span>[<span class="st">"maplibregl"</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="libraries-1">
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<div id="ojs-cell-2-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="libraries-2">
-<div id="ojs-cell-1-2" data-nodetype="declaration">
+<div id="ojs-cell-2-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="32" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 31;"><span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">/* this is a bit different to regular mapbox/maplibre instantiation</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">   it lets have the map react to other values in the document, like</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">   a button or a timer, without reinstantiating!</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>viewof map <span class="op">=</span> {</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="position: absolute; left: 0; top: 0; height: 100vh; width: 100%;" /&gt;`</span><span class="op">;</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Give the container dimensions.</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create the \`map\` object with the mapboxgl.Map constructor, referencing</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the container div</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    container<span class="op">,</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">// center: [133, -28],</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bounds</span><span class="op">:</span> [[<span class="dv">111</span><span class="op">,</span> <span class="op">-</span><span class="dv">46</span>]<span class="op">,</span> [<span class="dv">155</span><span class="op">,</span> <span class="op">-</span><span class="dv">9</span>]]<span class="op">,</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">// zoom: 3.8,</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">// minZoom: 1,</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">14</span><span class="op">,</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="dt">antialias</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> <span class="st">"style.json"</span><span class="op">,</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attributionControl</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxBounds</span><span class="op">:</span> [[<span class="dv">105</span><span class="op">,</span> <span class="op">-</span><span class="dv">48</span>]<span class="op">,</span> [<span class="dv">160</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span>]]<span class="op">,</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">// on map load:</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="co">// - dispatch its value back to ojs</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="co">// - add a prop to the layer that adds/removes a popup from the map</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="co">//   (we can't do this on initial layer def because the map isn't ready yet)</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">on</span>(<span class="st">"load"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    container<span class="op">.</span><span class="at">value</span> <span class="op">=</span> map<span class="op">;</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    container<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">CustomEvent</span>(<span class="st">"input"</span>))<span class="op">;</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">addSource</span>(<span class="st">"postcodes"</span><span class="op">,</span> {</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="st">"url"</span><span class="op">:</span> <span class="st">"tiles/postcodes/tiles.json"</span><span class="op">,</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"vector"</span><span class="op">,</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      <span class="st">"promoteId"</span><span class="op">:</span> <span class="st">"POA_NAME21"</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="co">// this layer shades all postcodes</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">addLayer</span>({</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> <span class="st">"postcode-colors"</span><span class="op">,</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">"source-layer"</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"fill"</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add pattern for focused postcodes</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">loadImage</span>(<span class="st">"stripes.png"</span><span class="op">,</span> <span class="kw">function</span>(err<span class="op">,</span> image) {</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (err) <span class="cf">throw</span> err<span class="op">;</span></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">addImage</span>(<span class="st">"focusStripes"</span><span class="op">,</span> image)<span class="op">;</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co"> - add an extra stripey layer on top for the highlighted postcode</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="co">// map.addLayer({</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   id: "postcode-focused",</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   source: "postcodes",</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   "source-layer": "postcodeswgs84",</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   type: "fill",</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   "filter": ["==", ["feature-state", "isFocus"], true],</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     "paint": {</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="co">//         "fill-pattern": "focusStripes",</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     }</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    <span class="co">// });</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* popup */</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> popup <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Popup</span>({</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>      <span class="dt">closeButton</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>      <span class="dt">closeOnClick</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>      <span class="dt">className</span><span class="op">:</span> <span class="st">"map-popup"</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">"click"</span><span class="op">,</span> <span class="st">"postcode-colors"</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Change the cursor style as a UI indicator.</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">getCanvas</span>()<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cursor</span> <span class="op">=</span> <span class="st">"pointer"</span><span class="op">;</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> coordinates <span class="op">=</span> e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">geometry</span><span class="op">.</span><span class="at">coordinates</span><span class="op">;</span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> target <span class="op">=</span> coordinates[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">?</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>        coordinates[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">:</span> coordinates[<span class="dv">0</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>      <span class="co">// either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>      <span class="co">// console.log(e.features[0].properties.POA_NAME21)</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> description <span class="op">=</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">POA_NAME21</span> <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">state</span><span class="op">.</span><span class="at">ensmin</span> <span class="op">+</span> <span class="st">" to "</span> <span class="op">+</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">state</span><span class="op">.</span><span class="at">ensmax</span> <span class="op">+</span> <span class="st">" 35°C+ days"</span><span class="op">;</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Ensure that if the map is zoomed out such that multiple</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>      <span class="co">// copies of the feature are visible, the popup appears</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>      <span class="co">// over the copy being pointed to.</span></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      <span class="co">// while (Math.abs(e.lngLat.lng - coordinates[0]) &gt; 180) {</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>      <span class="co">// coordinates[0] += e.lngLat.lng &gt; coordinates[0] ? 360 : -360;</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>      <span class="co">// }</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Populate the popup and set its coordinates</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>      <span class="co">// based on the feature found.</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>      popup<span class="op">.</span><span class="fu">setLngLat</span>(coordinates)<span class="op">.</span><span class="fu">setHTML</span>(description)<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">"mouseleave"</span><span class="op">,</span> <span class="st">"places"</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">getCanvas</span>()<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cursor</span> <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>      popup<span class="op">.</span><span class="fu">remove</span>()<span class="op">;</span></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="40" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 39;"><span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">/* this is a bit different to regular mapbox/maplibre instantiation</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">   it lets have the map react to other values in the document, like</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">   a button or a timer, without reinstantiating!</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co">   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>viewof map <span class="op">=</span> {</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="position: absolute; left: 0; top: 0; height: 100vh; width: 100%;" /&gt;`</span><span class="op">;</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Give the container dimensions.</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create the \`map\` object with the mapboxgl.Map constructor, referencing</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the container div</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    container<span class="op">,</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="co">// center: [133, -28],</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bounds</span><span class="op">:</span> [[<span class="dv">111</span><span class="op">,</span> <span class="op">-</span><span class="dv">46</span>]<span class="op">,</span> [<span class="dv">155</span><span class="op">,</span> <span class="op">-</span><span class="dv">9</span>]]<span class="op">,</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">// zoom: 3.8,</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">// minZoom: 1,</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">14</span><span class="op">,</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="dt">antialias</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> <span class="st">"style.json"</span><span class="op">,</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attributionControl</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxBounds</span><span class="op">:</span> [[<span class="dv">105</span><span class="op">,</span> <span class="op">-</span><span class="dv">48</span>]<span class="op">,</span> [<span class="dv">160</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span>]]<span class="op">,</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  <span class="co">// on map load:</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="co">// - dispatch its value back to ojs</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="co">// - add a prop to the layer that adds/removes a popup from the map</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="co">//   (we can't do this on initial layer def because the map isn't ready yet)</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">on</span>(<span class="st">"load"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    container<span class="op">.</span><span class="at">value</span> <span class="op">=</span> map<span class="op">;</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    container<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">CustomEvent</span>(<span class="st">"input"</span>))<span class="op">;</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">addSource</span>(<span class="st">"postcodes"</span><span class="op">,</span> {</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>      <span class="st">"url"</span><span class="op">:</span> <span class="st">"tiles/postcodes/tiles.json"</span><span class="op">,</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"vector"</span><span class="op">,</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>      <span class="st">"promoteId"</span><span class="op">:</span> <span class="st">"POA_NAME21"</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    <span class="co">// this layer shades all postcodes</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">addLayer</span>({</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> <span class="st">"postcode-colors"</span><span class="op">,</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>      <span class="st">"source-layer"</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"fill"</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add pattern for focused postcodes</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">loadImage</span>(<span class="st">"stripes.png"</span><span class="op">,</span> <span class="kw">function</span>(err<span class="op">,</span> image) {</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (err) <span class="cf">throw</span> err<span class="op">;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">addImage</span>(<span class="st">"focusStripes"</span><span class="op">,</span> image)<span class="op">;</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co"> - add an extra stripey layer on top for the highlighted postcode</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    <span class="co">// map.addLayer({</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   id: "postcode-focused",</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   source: "postcodes",</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   "source-layer": "postcodeswgs84",</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   type: "fill",</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    <span class="co">//   "filter": ["==", ["feature-state", "isFocus"], true],</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     "paint": {</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>    <span class="co">//         "fill-pattern": "focusStripes",</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    <span class="co">//     }</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    <span class="co">// });</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* popup */</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> popup <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Popup</span>({</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>      <span class="dt">closeButton</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>      <span class="dt">closeOnClick</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>      <span class="dt">className</span><span class="op">:</span> <span class="st">"map-popup"</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">"click"</span><span class="op">,</span> <span class="st">"postcode-colors"</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Change the cursor style as a UI indicator.</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">getCanvas</span>()<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cursor</span> <span class="op">=</span> <span class="st">"pointer"</span><span class="op">;</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> coordinates <span class="op">=</span> e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">geometry</span><span class="op">.</span><span class="at">coordinates</span><span class="op">;</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> target <span class="op">=</span> coordinates[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">?</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>        coordinates[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">:</span> coordinates[<span class="dv">0</span>][<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>      <span class="co">// either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>      <span class="co">// console.log(e.features[0].properties.POA_NAME21)</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> description <span class="op">=</span></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">POA_NAME21</span> <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">state</span><span class="op">.</span><span class="at">ensmin</span> <span class="op">+</span> <span class="st">" to "</span> <span class="op">+</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="at">features</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">state</span><span class="op">.</span><span class="at">ensmax</span> <span class="op">+</span> <span class="st">" 35°C+ days"</span><span class="op">;</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Ensure that if the map is zoomed out such that multiple</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>      <span class="co">// copies of the feature are visible, the popup appears</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>      <span class="co">// over the copy being pointed to.</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>      <span class="co">// while (Math.abs(e.lngLat.lng - coordinates[0]) &gt; 180) {</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>      <span class="co">// coordinates[0] += e.lngLat.lng &gt; coordinates[0] ? 360 : -360;</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>      <span class="co">// }</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Populate the popup and set its coordinates</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>      <span class="co">// based on the feature found.</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>      popup<span class="op">.</span><span class="fu">setLngLat</span>(coordinates)<span class="op">.</span><span class="fu">setHTML</span>(description)<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">on</span>(<span class="st">"mouseleave"</span><span class="op">,</span> <span class="st">"places"</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">getCanvas</span>()<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cursor</span> <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>      popup<span class="op">.</span><span class="fu">remove</span>()<span class="op">;</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="map" class="cell-output cell-output-display">
-<div id="ojs-cell-2" data-nodetype="declaration">
+<div id="ojs-cell-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div id="controls" class="cell inputForm">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="151" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 150;"><span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>viewof selectedPeriod <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"1995"</span><span class="op">,</span> <span class="st">"2030"</span><span class="op">,</span> <span class="st">"2050"</span>]<span class="op">,</span> { <span class="dt">value</span><span class="op">:</span> <span class="st">"1995"</span> })</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>viewof selectedScenario <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="bu">Map</span>([</span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Medium emissions"</span><span class="op">,</span> <span class="st">"rcp45diff"</span>]<span class="op">,</span></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"High emissions"</span><span class="op">,</span> <span class="st">"rcp85diff"</span>]</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>  ])<span class="op">,</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"rcp45diff"</span><span class="op">,</span> <span class="dt">disabled</span><span class="op">:</span> selectedPeriod <span class="op">==</span> <span class="st">"1995"</span> })</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="co">// override scenario with historical if 1995 is selected</span></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>actualScenario <span class="op">=</span> (selectedPeriod <span class="op">==</span> <span class="st">"1995"</span> <span class="op">?</span> <span class="st">"historical"</span> <span class="op">:</span> selectedScenario)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="159" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 158;"><span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>viewof selectedPeriod <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"1995"</span><span class="op">,</span> <span class="st">"2030"</span><span class="op">,</span> <span class="st">"2050"</span>]<span class="op">,</span> { <span class="dt">value</span><span class="op">:</span> <span class="st">"1995"</span> })</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>viewof selectedScenario <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="bu">Map</span>([</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Medium emissions"</span><span class="op">,</span> <span class="st">"rcp45diff"</span>]<span class="op">,</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"High emissions"</span><span class="op">,</span> <span class="st">"rcp85diff"</span>]</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>  ])<span class="op">,</span></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"rcp45diff"</span><span class="op">,</span> <span class="dt">disabled</span><span class="op">:</span> selectedPeriod <span class="op">==</span> <span class="st">"1995"</span> })</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="co">// override scenario with historical if 1995 is selected</span></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>actualScenario <span class="op">=</span> (selectedPeriod <span class="op">==</span> <span class="st">"1995"</span> <span class="op">?</span> <span class="st">"historical"</span> <span class="op">:</span> selectedScenario)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="controls-1">
-<div id="ojs-cell-3-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="controls-2">
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="controls-3">
-<div id="ojs-cell-3-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<div id="area-search-controls" class="cell areaInputForm">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="169" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 168;"><span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>viewof areaSearch <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(postcodeSuburbMap<span class="op">,</span> {</span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">"Enter your postcode or suburb"</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="co">// display a menu of results and a search button when we're down to 30 results</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>viewof selectedPostcode <span class="op">=</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">100</span> <span class="op">?</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>    Inputs<span class="op">.</span><span class="fu">select</span>(areaSearch<span class="op">,</span> {</span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>      <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">SAL_NAME21</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>d<span class="op">.</span><span class="at">POA_NAME21</span><span class="sc">}</span><span class="vs">)`</span></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>    <span class="fu">md</span><span class="vs">``</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>viewof goBtn <span class="op">=</span></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>  areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">100</span> <span class="op">?</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>    Inputs<span class="op">.</span><span class="fu">button</span>(<span class="vs">`Go`</span><span class="op">,</span> {</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>      <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">zoomToPostcode</span>(selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">md</span><span class="vs">``</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="area-search-controls-1">
 <div id="ojs-cell-4-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="area-search-controls-2">
+<div id="controls-2">
 <div id="ojs-cell-4-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="area-search-controls-3">
+<div id="controls-3">
 <div id="ojs-cell-4-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
-<div id="get-data" class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="193" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 192;"><span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>projections <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/news-stats-postcodes-short.csv"</span>)</span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>postcodeSuburbMap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/postcode-suburb-map.csv"</span>)</span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">csv</span>()<span class="op">;</span></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="co">// postcodeList = FileAttachment("/data/postcode-list.csv").csv();</span></span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a><span class="co">// filter data here (note postcodes need to be re-padded b/c observable's type</span></span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a><span class="co">// inference makes them numeric)</span></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>filteredProjections <span class="op">=</span> projections</span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(</span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>    d <span class="kw">=&gt;</span></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>      (d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> selectedPeriod) <span class="op">&amp;&amp;</span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>      (d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> actualScenario))</span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d<span class="op">,</span> <span class="dt">postcode</span><span class="op">:</span> <span class="bu">String</span>(d<span class="op">.</span><span class="at">geo_name</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">4</span><span class="op">,</span> <span class="st">"0"</span>) }))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="area-search-controls" class="cell areaInputForm">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="177" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>viewof areaSearch <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(postcodeSuburbMap<span class="op">,</span> {</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">"Enter your postcode or suburb"</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="co">// display a menu of results and a search button when we're down to 30 results</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>viewof selectedPostcode <span class="op">=</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>  areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">100</span> <span class="op">?</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>    Inputs<span class="op">.</span><span class="fu">select</span>(areaSearch<span class="op">,</span> {</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>      <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">SAL_NAME21</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>d<span class="op">.</span><span class="at">POA_NAME21</span><span class="sc">}</span><span class="vs">)`</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>    <span class="fu">md</span><span class="vs">``</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>viewof goBtn <span class="op">=</span></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>  areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> areaSearch<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">100</span> <span class="op">?</span></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>    Inputs<span class="op">.</span><span class="fu">button</span>(<span class="vs">`Go`</span><span class="op">,</span> {</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>      <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">zoomToPostcode</span>(selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">md</span><span class="vs">``</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="get-data-1">
+<div id="area-search-controls-1">
 <div id="ojs-cell-5-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="get-data-2">
+<div id="area-search-controls-2">
 <div id="ojs-cell-5-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="get-data-3">
+<div id="area-search-controls-3">
 <div id="ojs-cell-5-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
-<div id="update-map" class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="213" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>yellowRedFill <span class="op">=</span> [</span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffffb2"</span><span class="op">,</span></span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fed976"</span><span class="op">,</span></span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#feb24c"</span><span class="op">,</span></span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#fd8d3c"</span><span class="op">,</span></span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#f03b20"</span><span class="op">,</span></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#bd0026"</span></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>yellowRedStroke <span class="op">=</span> [</span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffff46"</span><span class="op">,</span></span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fdbf1a"</span><span class="op">,</span></span>
-<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#f68e01"</span><span class="op">,</span></span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#e86302"</span><span class="op">,</span></span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#bf240d"</span><span class="op">,</span></span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#8e001c"</span></span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>rainbowFill <span class="op">=</span> [</span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#3288bd"</span><span class="op">,</span></span>
-<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#99d594"</span><span class="op">,</span></span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#e6f598"</span><span class="op">,</span></span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffffbf"</span><span class="op">,</span></span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fee08b"</span><span class="op">,</span></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fc8d59"</span><span class="op">,</span></span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#d53e4f"</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>rainbowStroke <span class="op">=</span> [</span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#26668e"</span><span class="op">,</span></span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#5bbc53"</span><span class="op">,</span></span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#d0ec3e"</span><span class="op">,</span></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffff4f"</span><span class="op">,</span></span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fdc62a"</span><span class="op">,</span></span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fa5305"</span><span class="op">,</span></span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#a92534"</span></span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="co">// when the filtered data changes, rejoin it to the map tiles and update the</span></span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a><span class="co">// colour scheme</span></span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>updateMapData <span class="op">=</span> {</span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>  filteredProjections<span class="op">.</span><span class="fu">forEach</span>(row <span class="kw">=&gt;</span> {</span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>        <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>        <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">postcode</span><span class="op">,</span></span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmean</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmean</span><span class="op">,</span></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmax</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmax</span><span class="op">,</span></span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmin</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmin</span></span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (actualScenario<span class="op">.</span><span class="fu">endsWith</span>(<span class="st">"diff"</span>)) {</span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>      <span class="co">// extra days in future: yellow-red</span></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to yellow-red"</span>)</span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedFill]</span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedStroke]</span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>      <span class="co">// historical: diverging rainbow</span></span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to rainbow"</span>)</span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowFill]</span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowStroke]</span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>  <span class="co">// also set fill pattern if highlighted</span></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>  <span class="co">// map.setPaintProperty("postcode-colors", "fill-patterm",</span></span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>  <span class="co">//     ["case", ["==", ["feature-state", "isFocus"], true],</span></span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>  <span class="co">//       "focusStripes",</span></span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>  <span class="co">//       // null?</span></span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>  <span class="co">//     ]);</span></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="get-data" class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="201" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 200;"><span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>projections <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/news-stats-postcodes-short.csv"</span>)</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>postcodeSuburbMap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/postcode-suburb-map.csv"</span>)</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">csv</span>()<span class="op">;</span></span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a><span class="co">// postcodeList = FileAttachment("/data/postcode-list.csv").csv();</span></span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a><span class="co">// filter data here (note postcodes need to be re-padded b/c observable's type</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="co">// inference makes them numeric)</span></span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>filteredProjections <span class="op">=</span> projections</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>    d <span class="kw">=&gt;</span></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>      (d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> selectedPeriod) <span class="op">&amp;&amp;</span></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>      (d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> actualScenario))</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d<span class="op">,</span> <span class="dt">postcode</span><span class="op">:</span> <span class="bu">String</span>(d<span class="op">.</span><span class="at">geo_name</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">4</span><span class="op">,</span> <span class="st">"0"</span>) }))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="update-map-1">
+<div id="get-data-1">
 <div id="ojs-cell-6-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="update-map-2">
+<div id="get-data-2">
 <div id="ojs-cell-6-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="update-map-3">
+<div id="get-data-3">
 <div id="ojs-cell-6-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div id="update-map" class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="221" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 220;"><span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>yellowRedFill <span class="op">=</span> [</span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffffb2"</span><span class="op">,</span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fed976"</span><span class="op">,</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#feb24c"</span><span class="op">,</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#fd8d3c"</span><span class="op">,</span></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#f03b20"</span><span class="op">,</span></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#bd0026"</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>yellowRedStroke <span class="op">=</span> [</span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#ffff46"</span><span class="op">,</span></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="op">,</span>   <span class="st">"#fdbf1a"</span><span class="op">,</span></span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span>  <span class="st">"#f68e01"</span><span class="op">,</span></span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span><span class="op">,</span>  <span class="st">"#e86302"</span><span class="op">,</span></span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>  <span class="dv">40</span><span class="op">,</span>  <span class="st">"#bf240d"</span><span class="op">,</span></span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a>  <span class="dv">80</span><span class="op">,</span>  <span class="st">"#8e001c"</span></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>rainbowFill <span class="op">=</span> [</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#3288bd"</span><span class="op">,</span></span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#99d594"</span><span class="op">,</span></span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#e6f598"</span><span class="op">,</span></span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffffbf"</span><span class="op">,</span></span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fee08b"</span><span class="op">,</span></span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fc8d59"</span><span class="op">,</span></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#d53e4f"</span></span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>rainbowStroke <span class="op">=</span> [</span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">,</span>   <span class="st">"#26668e"</span><span class="op">,</span></span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">,</span>   <span class="st">"#5bbc53"</span><span class="op">,</span></span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span><span class="op">,</span>  <span class="st">"#d0ec3e"</span><span class="op">,</span></span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>  <span class="dv">30</span><span class="op">,</span>  <span class="st">"#ffff4f"</span><span class="op">,</span></span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span><span class="op">,</span>  <span class="st">"#fdc62a"</span><span class="op">,</span></span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a>  <span class="dv">180</span><span class="op">,</span> <span class="st">"#fa5305"</span><span class="op">,</span></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>  <span class="dv">366</span><span class="op">,</span> <span class="st">"#a92534"</span></span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a><span class="co">// when the filtered data changes, rejoin it to the map tiles and update the</span></span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a><span class="co">// colour scheme</span></span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a>updateMapData <span class="op">=</span> {</span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a>  filteredProjections<span class="op">.</span><span class="fu">forEach</span>(row <span class="kw">=&gt;</span> {</span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a>        <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a>        <span class="dt">id</span><span class="op">:</span> row<span class="op">.</span><span class="at">postcode</span><span class="op">,</span></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmean</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmean</span><span class="op">,</span></span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmax</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmax</span><span class="op">,</span></span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ensmin</span><span class="op">:</span> row<span class="op">.</span><span class="at">ensmin</span></span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (actualScenario<span class="op">.</span><span class="fu">endsWith</span>(<span class="st">"diff"</span>)) {</span>
+<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a>      <span class="co">// extra days in future: yellow-red</span></span>
+<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to yellow-red"</span>)</span>
+<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
+<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedFill]</span>
+<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
+<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>yellowRedStroke]</span>
+<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a>      <span class="co">// historical: diverging rainbow</span></span>
+<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(actualScenario <span class="op">+</span> <span class="st">": switching to rainbow"</span>)</span>
+<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-color"</span><span class="op">,</span></span>
+<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowFill]</span>
+<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a>      map<span class="op">.</span><span class="fu">setPaintProperty</span>(<span class="st">"postcode-colors"</span><span class="op">,</span> <span class="st">"fill-outline-color"</span><span class="op">,</span></span>
+<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a>        [<span class="st">"case"</span><span class="op">,</span> [<span class="st">"=="</span><span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span> <span class="kw">null</span>]<span class="op">,</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>          [<span class="st">"interpolate"</span><span class="op">,</span> [<span class="st">"linear"</span>]<span class="op">,</span> [<span class="st">"feature-state"</span><span class="op">,</span> <span class="st">"ensmean"</span>]<span class="op">,</span></span>
+<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>            <span class="op">...</span>rainbowStroke]</span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>        ])<span class="op">;</span></span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>  <span class="co">// also set fill pattern if highlighted</span></span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>  <span class="co">// map.setPaintProperty("postcode-colors", "fill-patterm",</span></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>  <span class="co">//     ["case", ["==", ["feature-state", "isFocus"], true],</span></span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>  <span class="co">//       "focusStripes",</span></span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>  <span class="co">//       // null?</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>  <span class="co">//     ]);</span></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="update-map-1">
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-2">
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="update-map-3">
+<div id="ojs-cell-7-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="update-map-4">
-<div id="ojs-cell-6-4" data-nodetype="declaration">
+<div id="ojs-cell-7-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="update-map-5">
-<div id="ojs-cell-6-5" data-nodetype="declaration">
+<div id="ojs-cell-7-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="308" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 307;"><span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">zoomToPostcode</span>(postcode) {</span>
-<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co"> - stop highlighting previously selected postcode</span></span>
-<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the postcode's feature</span></span>
-<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> targetPostcodeFeature <span class="op">=</span> map<span class="op">.</span><span class="fu">querySourceFeatures</span>(<span class="st">"postcodes"</span><span class="op">,</span> {</span>
-<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span>   <span class="co">// postcodeswgs84?</span></span>
-<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>    <span class="dt">filter</span><span class="op">:</span> [<span class="st">"=="</span><span class="op">,</span> <span class="st">"POA_NAME21"</span><span class="op">,</span> postcode]</span>
-<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (targetPostcodeFeature<span class="op">.</span><span class="at">length</span> <span class="op">!=</span> <span class="dv">1</span>) {</span>
-<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"Can only zoom to 1 postcode at a time, not "</span><span class="op">,</span></span>
-<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      targetPostcodeFeature<span class="op">.</span><span class="at">length</span>)<span class="op">;</span></span>
-<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the feature's geometry</span></span>
-<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> geom <span class="op">=</span> targetPostcodeFeature[<span class="dv">0</span>]<span class="op">.</span><span class="at">geometry</span><span class="op">.</span><span class="at">coordinates</span>[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>  <span class="co">// reduce the geometry to bounds</span></span>
-<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> postcodeBounds <span class="op">=</span> geom<span class="op">.</span><span class="fu">reduce</span>(</span>
-<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>    (accum<span class="op">,</span> current) <span class="kw">=&gt;</span> accum<span class="op">.</span><span class="fu">extend</span>(current)<span class="op">,</span>        </span>
-<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">LngLatBounds</span>(geom[<span class="dv">0</span>]<span class="op">,</span> geom[<span class="dv">0</span>]))<span class="op">;</span></span>
-<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>  <span class="co">// zoom to postcode</span></span>
-<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">fitBounds</span>(postcodeBounds<span class="op">,</span> {</span>
-<span id="cb7-333"><a href="#cb7-333" aria-hidden="true" tabindex="-1"></a>    <span class="dt">padding</span><span class="op">:</span> {<span class="dt">top</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">bottom</span><span class="op">:</span><span class="dv">30</span><span class="op">,</span> <span class="dt">left</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">right</span><span class="op">:</span> <span class="dv">10</span>}<span class="op">,</span></span>
-<span id="cb7-334"><a href="#cb7-334" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">12</span></span>
-<span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>  <span class="co">// highlight postcode?</span></span>
-<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
-<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
-<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
-<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> postcode<span class="op">,</span></span>
-<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">inFocus</span><span class="op">:</span> <span class="kw">true</span> }</span>
-<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
-<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>  <span class="co">// display info panel</span></span>
-<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>  <span class="pp">setTimeout</span>(MicroModal<span class="op">.</span><span class="fu">show</span>(<span class="st">"modal-focused-postcode"</span>)<span class="op">,</span> <span class="dv">1000</span>)</span>
-<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="316" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 315;"><span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">zoomToPostcode</span>(postcode) {</span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co"> - stop highlighting previously selected postcode</span></span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the postcode's feature</span></span>
+<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> targetPostcodeFeature <span class="op">=</span> map<span class="op">.</span><span class="fu">querySourceFeatures</span>(<span class="st">"postcodes"</span><span class="op">,</span> {</span>
+<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a>    <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span>   <span class="co">// postcodeswgs84?</span></span>
+<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a>    <span class="dt">filter</span><span class="op">:</span> [<span class="st">"=="</span><span class="op">,</span> <span class="st">"POA_NAME21"</span><span class="op">,</span> postcode]</span>
+<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb8-325"><a href="#cb8-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-326"><a href="#cb8-326" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (targetPostcodeFeature<span class="op">.</span><span class="at">length</span> <span class="op">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"Can only zoom to 1 postcode at a time, not "</span><span class="op">,</span></span>
+<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a>      targetPostcodeFeature<span class="op">.</span><span class="at">length</span>)<span class="op">;</span></span>
+<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-330"><a href="#cb8-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-331"><a href="#cb8-331" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the feature's geometry</span></span>
+<span id="cb8-332"><a href="#cb8-332" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> geom <span class="op">=</span> targetPostcodeFeature[<span class="dv">0</span>]<span class="op">.</span><span class="at">geometry</span><span class="op">.</span><span class="at">coordinates</span>[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb8-333"><a href="#cb8-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-334"><a href="#cb8-334" aria-hidden="true" tabindex="-1"></a>  <span class="co">// reduce the geometry to bounds</span></span>
+<span id="cb8-335"><a href="#cb8-335" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> postcodeBounds <span class="op">=</span> geom<span class="op">.</span><span class="fu">reduce</span>(</span>
+<span id="cb8-336"><a href="#cb8-336" aria-hidden="true" tabindex="-1"></a>    (accum<span class="op">,</span> current) <span class="kw">=&gt;</span> accum<span class="op">.</span><span class="fu">extend</span>(current)<span class="op">,</span>        </span>
+<span id="cb8-337"><a href="#cb8-337" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">LngLatBounds</span>(geom[<span class="dv">0</span>]<span class="op">,</span> geom[<span class="dv">0</span>]))<span class="op">;</span></span>
+<span id="cb8-338"><a href="#cb8-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-339"><a href="#cb8-339" aria-hidden="true" tabindex="-1"></a>  <span class="co">// zoom to postcode</span></span>
+<span id="cb8-340"><a href="#cb8-340" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">fitBounds</span>(postcodeBounds<span class="op">,</span> {</span>
+<span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a>    <span class="dt">padding</span><span class="op">:</span> {<span class="dt">top</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">bottom</span><span class="op">:</span><span class="dv">30</span><span class="op">,</span> <span class="dt">left</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">right</span><span class="op">:</span> <span class="dv">10</span>}<span class="op">,</span></span>
+<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a>  <span class="co">// highlight postcode?</span></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">setFeatureState</span>(</span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="st">"postcodes"</span><span class="op">,</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sourceLayer</span><span class="op">:</span> <span class="st">"postcodeswgs84"</span><span class="op">,</span></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> postcode<span class="op">,</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">inFocus</span><span class="op">:</span> <span class="kw">true</span> }</span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a>  <span class="co">// display info panel</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a>  <span class="pp">setTimeout</span>(MicroModal<span class="op">.</span><span class="fu">show</span>(<span class="st">"modal-focused-postcode"</span>)<span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="zoom-to-postcode-fn" class="cell-output cell-output-display">
-<div id="ojs-cell-7" data-nodetype="declaration">
+<div id="ojs-cell-8" data-nodetype="declaration">
 
 </div>
 </div>
@@ -673,113 +694,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 <div id="modal-focused-postcode-content">
 <div id="info-panel" class="cell">
-<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="372" data-source-offset="-23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 371;"><span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a>focusedPostcodeProjections <span class="op">=</span> projections</span>
-<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(</span>
-<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a>      d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">geo_name</span> <span class="op">==</span> selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
-<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a>    <span class="co">// .map(d =&gt; ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));</span></span>
-<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a><span class="co">// which suburbs are in this postcode?</span></span>
-<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a>suburbsInPostcode <span class="op">=</span> postcodeSuburbMap</span>
-<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">POA_NAME21</span> <span class="op">==</span> selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
-<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">SAL_NAME21</span>)</span>
-<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)</span>
-<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="co">// display info as a table (just for dianostic purposes)</span></span>
-<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a><span class="co">// viewof infoTable = Inputs.table(focusedPostcodeProjections)</span></span>
-<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="co">// get the different scenarios out</span></span>
-<span id="cb8-387"><a href="#cb8-387" aria-hidden="true" tabindex="-1"></a>figuresNow <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-388"><a href="#cb8-388" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"historical"</span>)</span>
-<span id="cb8-389"><a href="#cb8-389" aria-hidden="true" tabindex="-1"></a>figures2030Med <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-390"><a href="#cb8-390" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
-<span id="cb8-391"><a href="#cb8-391" aria-hidden="true" tabindex="-1"></a>figures2030MedDiff <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-392"><a href="#cb8-392" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
-<span id="cb8-393"><a href="#cb8-393" aria-hidden="true" tabindex="-1"></a>figures2050Med <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-394"><a href="#cb8-394" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
-<span id="cb8-395"><a href="#cb8-395" aria-hidden="true" tabindex="-1"></a>figures2050MedDiff <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-396"><a href="#cb8-396" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
-<span id="cb8-397"><a href="#cb8-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-398"><a href="#cb8-398" aria-hidden="true" tabindex="-1"></a>figures2030High <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-399"><a href="#cb8-399" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
-<span id="cb8-400"><a href="#cb8-400" aria-hidden="true" tabindex="-1"></a>figures2030HighDiff <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-401"><a href="#cb8-401" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
-<span id="cb8-402"><a href="#cb8-402" aria-hidden="true" tabindex="-1"></a>figures2050High <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-403"><a href="#cb8-403" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
-<span id="cb8-404"><a href="#cb8-404" aria-hidden="true" tabindex="-1"></a>figures2050HighDiff <span class="op">=</span> focusedPostcodeProjections</span>
-<span id="cb8-405"><a href="#cb8-405" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="380" data-source-offset="-23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 379;"><span id="cb9-380"><a href="#cb9-380" aria-hidden="true" tabindex="-1"></a>focusedPostcodeProjections <span class="op">=</span> projections</span>
+<span id="cb9-381"><a href="#cb9-381" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(</span>
+<span id="cb9-382"><a href="#cb9-382" aria-hidden="true" tabindex="-1"></a>      d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">geo_name</span> <span class="op">==</span> selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
+<span id="cb9-383"><a href="#cb9-383" aria-hidden="true" tabindex="-1"></a>    <span class="co">// .map(d =&gt; ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));</span></span>
+<span id="cb9-384"><a href="#cb9-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-385"><a href="#cb9-385" aria-hidden="true" tabindex="-1"></a><span class="co">// which suburbs are in this postcode?</span></span>
+<span id="cb9-386"><a href="#cb9-386" aria-hidden="true" tabindex="-1"></a>suburbsInPostcode <span class="op">=</span> postcodeSuburbMap</span>
+<span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">POA_NAME21</span> <span class="op">==</span> selectedPostcode<span class="op">.</span><span class="at">POA_NAME21</span>)</span>
+<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">SAL_NAME21</span>)</span>
+<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)</span>
+<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a><span class="co">// display info as a table (just for dianostic purposes)</span></span>
+<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a><span class="co">// viewof infoTable = Inputs.table(focusedPostcodeProjections)</span></span>
+<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a><span class="co">// get the different scenarios out</span></span>
+<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a>figuresNow <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"historical"</span>)</span>
+<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a>figures2030Med <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
+<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a>figures2030MedDiff <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
+<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a>figures2050Med <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
+<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a>figures2050MedDiff <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp45diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
+<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a>figures2030High <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
+<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a>figures2030HighDiff <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2030"</span>)</span>
+<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a>figures2050High <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span>
+<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a>figures2050HighDiff <span class="op">=</span> focusedPostcodeProjections</span>
+<span id="cb9-413"><a href="#cb9-413" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">file_scenario</span> <span class="op">==</span> <span class="st">"rcp85diff"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">file_period</span> <span class="op">==</span> <span class="st">"2050"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-1">
-<div id="ojs-cell-8-1" data-nodetype="declaration">
+<div id="ojs-cell-9-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-2">
-<div id="ojs-cell-8-2" data-nodetype="declaration">
+<div id="ojs-cell-9-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-3">
-<div id="ojs-cell-8-3" data-nodetype="declaration">
+<div id="ojs-cell-9-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-4">
-<div id="ojs-cell-8-4" data-nodetype="declaration">
+<div id="ojs-cell-9-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-5">
-<div id="ojs-cell-8-5" data-nodetype="declaration">
+<div id="ojs-cell-9-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-6">
-<div id="ojs-cell-8-6" data-nodetype="declaration">
+<div id="ojs-cell-9-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-7">
-<div id="ojs-cell-8-7" data-nodetype="declaration">
+<div id="ojs-cell-9-7" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-8">
-<div id="ojs-cell-8-8" data-nodetype="declaration">
+<div id="ojs-cell-9-8" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-9">
-<div id="ojs-cell-8-9" data-nodetype="declaration">
+<div id="ojs-cell-9-9" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-10">
-<div id="ojs-cell-8-10" data-nodetype="declaration">
+<div id="ojs-cell-9-10" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div id="info-panel-11">
-<div id="ojs-cell-8-11" data-nodetype="declaration">
+<div id="ojs-cell-9-11" data-nodetype="declaration">
 
 </div>
 </div>
@@ -793,27 +814,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <!-- initialise miromodal.js -->
-<div class="cell" data-include="false">
-<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>micro <span class="op">=</span> <span class="pp">require</span>(<span class="st">"micromodal@0.4.10"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>micro<span class="op">.</span><span class="fu">init</span>({</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitOpenAnimation</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitCloseAnimation</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-9-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display hidden">
-<div>
-<div id="ojs-cell-9-2" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-</div>
 <div id="modal-useremix" class="modal micromodal-slide" aria-hidden="true">
 <div class="modal__overlay" tabindex="-1" data-micromodal-close="true">
 <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-useremix-title">
@@ -885,7 +885,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\nr = require.alias({\n  maplibregl: \"maplibre-gl@2.1.9/dist/maplibre-gl.js\",\n});\n\nmaplibregl = r(\"maplibregl\").catch(() => window[\"maplibregl\"]);\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n/* this is a bit different to regular mapbox/maplibre instantiation\n   it lets have the map react to other values in the document, like\n   a button or a timer, without reinstantiating!\n   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */\n   \nviewof map = {\n  let container = html`<div style=\"position: absolute; left: 0; top: 0; height: 100vh; width: 100%;\" />`;\n\n  // Give the container dimensions.\n  yield container;\n\n  // Create the \\`map\\` object with the mapboxgl.Map constructor, referencing\n  // the container div\n  let map = new maplibregl.Map({\n    container,\n    // center: [133, -28],\n    bounds: [[111, -46], [155, -9]],\n    // zoom: 3.8,\n    // minZoom: 1,\n    maxZoom: 14,\n    antialias: true,\n    style: \"style.json\",\n    attributionControl: false,\n    maxBounds: [[105, -48], [160, -5]],\n  });\n\n  // on map load:\n  // - dispatch its value back to ojs\n  // - add a prop to the layer that adds/removes a popup from the map\n  //   (we can't do this on initial layer def because the map isn't ready yet)\n  map.on(\"load\", () => {\n    container.value = map;\n    container.dispatchEvent(new CustomEvent(\"input\"));\n\n    map.addSource(\"postcodes\", {\n      \"url\": \"tiles/postcodes/tiles.json\",\n      \"type\": \"vector\",\n      \"promoteId\": \"POA_NAME21\"\n    });\n\n    // this layer shades all postcodes\n    map.addLayer({\n      id: \"postcode-colors\",\n      source: \"postcodes\",\n      \"source-layer\": \"postcodeswgs84\",\n      type: \"fill\"\n    });\n\n    // add pattern for focused postcodes\n    map.loadImage(\"stripes.png\", function(err, image) {\n      if (err) throw err;\n      map.addImage(\"focusStripes\", image);\n    });\n\n    // TODO - add an extra stripey layer on top for the highlighted postcode\n    // map.addLayer({\n    //   id: \"postcode-focused\",\n    //   source: \"postcodes\",\n    //   \"source-layer\": \"postcodeswgs84\",\n    //   type: \"fill\",\n    //   \"filter\": [\"==\", [\"feature-state\", \"isFocus\"], true],\n    //     \"paint\": {\n    //         \"fill-pattern\": \"focusStripes\",\n    //     }\n    // });\n\n    /* popup */\n\n    const popup = new maplibregl.Popup({\n      closeButton: false,\n      closeOnClick: false,\n      className: \"map-popup\"\n    });\n\n    map.on(\"click\", \"postcode-colors\", function(e) {\n      // Change the cursor style as a UI indicator.\n      map.getCanvas().style.cursor = \"pointer\";\n\n      const coordinates = e.features[0].geometry.coordinates;\n\n      const target = coordinates[0][0] ?\n        coordinates[0][0] : coordinates[0][0][0];\n\n      // either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]\n      // console.log(e.features[0].properties.POA_NAME21)\n      var description =\n        e.features[0].properties.POA_NAME21 + \": \" +\n        e.features[0].state.ensmin + \" to \" +\n        e.features[0].state.ensmax + \" 35°C+ days\";\n      \n      // Ensure that if the map is zoomed out such that multiple\n      // copies of the feature are visible, the popup appears\n      // over the copy being pointed to.\n      // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {\n      // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;\n      // }\n      \n      // Populate the popup and set its coordinates\n      // based on the feature found.\n      popup.setLngLat(coordinates).setHTML(description).addTo(map);\n    });\n      \n    map.on(\"mouseleave\", \"places\", function () {\n      map.getCanvas().style.cursor = \"\";\n      popup.remove();\n    });\n\n  });\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"\nviewof selectedPeriod = Inputs.radio([\"1995\", \"2030\", \"2050\"], { value: \"1995\" })\n\nviewof selectedScenario = Inputs.radio(\n  new Map([\n    [\"Medium emissions\", \"rcp45diff\"],\n    [\"High emissions\", \"rcp85diff\"]\n  ]),\n  { value: \"rcp45diff\", disabled: selectedPeriod == \"1995\" })\n\n// override scenario with historical if 1995 is selected\nactualScenario = (selectedPeriod == \"1995\" ? \"historical\" : selectedScenario)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"\n// start with a search box to narrow postcodes and suburbs down\nviewof areaSearch = Inputs.search(postcodeSuburbMap, {\n  placeholder: \"Enter your postcode or suburb\"\n});\n\n// display a menu of results and a search button when we're down to 30 results\n\nviewof selectedPostcode =\n  areaSearch.length > 0 && areaSearch.length < 100 ?\n    Inputs.select(areaSearch, {\n      format: d => `${d.SAL_NAME21} (${d.POA_NAME21})`\n    }) :\n    md``\n\nviewof goBtn =\n  areaSearch.length > 0 && areaSearch.length < 100 ?\n    Inputs.button(`Go`, {\n      reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)\n    }) :\n  md``\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"projections = FileAttachment(\"/data/news-stats-postcodes-short.csv\")\n  .csv({ typed: true });\n\npostcodeSuburbMap = FileAttachment(\"/data/postcode-suburb-map.csv\")\n  .csv();\n// postcodeList = FileAttachment(\"/data/postcode-list.csv\").csv();\n\n// filter data here (note postcodes need to be re-padded b/c observable's type\n// inference makes them numeric)\nfilteredProjections = projections\n  .filter(\n    d =>\n      (d.file_period == selectedPeriod) &&\n      (d.file_scenario == actualScenario))\n  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"\nyellowRedFill = [\n  0,   \"#ffffb2\",\n  5,   \"#fed976\",\n  10,  \"#feb24c\",\n  20,  \"#fd8d3c\",\n  40,  \"#f03b20\",\n  80,  \"#bd0026\"\n]\nyellowRedStroke = [\n  0,   \"#ffff46\",\n  5,   \"#fdbf1a\",\n  10,  \"#f68e01\",\n  20,  \"#e86302\",\n  40,  \"#bf240d\",\n  80,  \"#8e001c\"\n]\n\nrainbowFill = [\n  0,   \"#3288bd\",\n  7,   \"#99d594\",\n  14,  \"#e6f598\",\n  30,  \"#ffffbf\",\n  90,  \"#fee08b\",\n  180, \"#fc8d59\",\n  366, \"#d53e4f\"\n]\nrainbowStroke = [\n  0,   \"#26668e\",\n  7,   \"#5bbc53\",\n  14,  \"#d0ec3e\",\n  30,  \"#ffff4f\",\n  90,  \"#fdc62a\",\n  180, \"#fa5305\",\n  366, \"#a92534\"\n]\n\n// when the filtered data changes, rejoin it to the map tiles and update the\n// colour scheme\nupdateMapData = {\n\n  filteredProjections.forEach(row => {\n    map.setFeatureState(\n      {\n        source: \"postcodes\",\n        sourceLayer: \"postcodeswgs84\",\n        id: row.postcode,\n      },\n      {\n        ensmean: row.ensmean,\n        ensmax: row.ensmax,\n        ensmin: row.ensmin\n      }\n    );\n  });\n\n  if (actualScenario.endsWith(\"diff\")) {\n      // extra days in future: yellow-red\n      console.log(actualScenario + \": switching to yellow-red\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedFill]\n        ]);\n      map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedStroke]\n        ]);\n    } else {\n      // historical: diverging rainbow\n      console.log(actualScenario + \": switching to rainbow\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowFill]\n        ]);\n      map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowStroke]\n        ]);\n  }\n\n  // also set fill pattern if highlighted\n  // map.setPaintProperty(\"postcode-colors\", \"fill-patterm\",\n  //     [\"case\", [\"==\", [\"feature-state\", \"isFocus\"], true],\n  //       \"focusStripes\",\n  //       // null?\n  //     ]);\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"function zoomToPostcode(postcode) {\n\n  // TODO - stop highlighting previously selected postcode\n  \n  // get the postcode's feature\n  const targetPostcodeFeature = map.querySourceFeatures(\"postcodes\", {\n    sourceLayer: \"postcodeswgs84\",   // postcodeswgs84?\n    filter: [\"==\", \"POA_NAME21\", postcode]\n  });\n\n  if (targetPostcodeFeature.length != 1) {\n    console.error(\"Can only zoom to 1 postcode at a time, not \",\n      targetPostcodeFeature.length);\n  }\n\n  // get the feature's geometry\n  const geom = targetPostcodeFeature[0].geometry.coordinates[0];\n\n  // reduce the geometry to bounds\n  const postcodeBounds = geom.reduce(\n    (accum, current) => accum.extend(current),        \n    new maplibregl.LngLatBounds(geom[0], geom[0]));\n\n  // zoom to postcode\n  map.fitBounds(postcodeBounds, {\n    padding: {top: 40, bottom:30, left: 10, right: 10},\n    maxZoom: 12\n  });\n\n  // highlight postcode?\n  map.setFeatureState(\n    {\n      source: \"postcodes\",\n      sourceLayer: \"postcodeswgs84\",\n      id: postcode,\n    },\n    { inFocus: true }\n  );\n  \n\n  // display info panel\n  setTimeout(MicroModal.show(\"modal-focused-postcode\"), 1000)\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"// classes: focusPanel\nfocusedPostcodeProjections = projections\n  .filter(\n      d => d.geo_name == selectedPostcode.POA_NAME21)\n    // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n\n// which suburbs are in this postcode?\nsuburbsInPostcode = postcodeSuburbMap\n  .filter(d => d.POA_NAME21 == selectedPostcode.POA_NAME21)\n  .map(d => d.SAL_NAME21)\n  .join(\", \")\n\n// display info as a table (just for dianostic purposes)\n// viewof infoTable = Inputs.table(focusedPostcodeProjections)\n\n// get the different scenarios out\nfiguresNow = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"historical\")\nfigures2030Med = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45\" && d.file_period == \"2030\")\nfigures2030MedDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45diff\" && d.file_period == \"2030\")\nfigures2050Med = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45\" && d.file_period == \"2050\")\nfigures2050MedDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45diff\" && d.file_period == \"2050\")\n\nfigures2030High = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85\" && d.file_period == \"2030\")\nfigures2030HighDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85diff\" && d.file_period == \"2030\")\nfigures2050High = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85\" && d.file_period == \"2050\")\nfigures2050HighDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85diff\" && d.file_period == \"2050\")\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"micro = require(\"micromodal@0.4.10\")\nmicro.init({\n  awaitOpenAnimation: true,\n  awaitCloseAnimation: true\n});\n"},{"methodName":"interpretQuiet","source":"shinyInput('map')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPeriod')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedScenario')"},{"methodName":"interpretQuiet","source":"shinyInput('areaSearch')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPostcode')"},{"methodName":"interpretQuiet","source":"shinyInput('goBtn')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"micro = require(\"micromodal@0.4.10\")\nmicro.init({\n  awaitOpenAnimation: true,\n  awaitCloseAnimation: true\n});\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\nr = require.alias({\n  maplibregl: \"maplibre-gl@2.1.9/dist/maplibre-gl.js\",\n});\n\nmaplibregl = r(\"maplibregl\").catch(() => window[\"maplibregl\"]);\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"\n/* this is a bit different to regular mapbox/maplibre instantiation\n   it lets have the map react to other values in the document, like\n   a button or a timer, without reinstantiating!\n   (based on https://observablehq.com/@tmcw/using-mapbox-gl-js) */\n   \nviewof map = {\n  let container = html`<div style=\"position: absolute; left: 0; top: 0; height: 100vh; width: 100%;\" />`;\n\n  // Give the container dimensions.\n  yield container;\n\n  // Create the \\`map\\` object with the mapboxgl.Map constructor, referencing\n  // the container div\n  let map = new maplibregl.Map({\n    container,\n    // center: [133, -28],\n    bounds: [[111, -46], [155, -9]],\n    // zoom: 3.8,\n    // minZoom: 1,\n    maxZoom: 14,\n    antialias: true,\n    style: \"style.json\",\n    attributionControl: false,\n    maxBounds: [[105, -48], [160, -5]],\n  });\n\n  // on map load:\n  // - dispatch its value back to ojs\n  // - add a prop to the layer that adds/removes a popup from the map\n  //   (we can't do this on initial layer def because the map isn't ready yet)\n  map.on(\"load\", () => {\n    container.value = map;\n    container.dispatchEvent(new CustomEvent(\"input\"));\n\n    map.addSource(\"postcodes\", {\n      \"url\": \"tiles/postcodes/tiles.json\",\n      \"type\": \"vector\",\n      \"promoteId\": \"POA_NAME21\"\n    });\n\n    // this layer shades all postcodes\n    map.addLayer({\n      id: \"postcode-colors\",\n      source: \"postcodes\",\n      \"source-layer\": \"postcodeswgs84\",\n      type: \"fill\"\n    });\n\n    // add pattern for focused postcodes\n    map.loadImage(\"stripes.png\", function(err, image) {\n      if (err) throw err;\n      map.addImage(\"focusStripes\", image);\n    });\n\n    // TODO - add an extra stripey layer on top for the highlighted postcode\n    // map.addLayer({\n    //   id: \"postcode-focused\",\n    //   source: \"postcodes\",\n    //   \"source-layer\": \"postcodeswgs84\",\n    //   type: \"fill\",\n    //   \"filter\": [\"==\", [\"feature-state\", \"isFocus\"], true],\n    //     \"paint\": {\n    //         \"fill-pattern\": \"focusStripes\",\n    //     }\n    // });\n\n    /* popup */\n\n    const popup = new maplibregl.Popup({\n      closeButton: false,\n      closeOnClick: false,\n      className: \"map-popup\"\n    });\n\n    map.on(\"click\", \"postcode-colors\", function(e) {\n      // Change the cursor style as a UI indicator.\n      map.getCanvas().style.cursor = \"pointer\";\n\n      const coordinates = e.features[0].geometry.coordinates;\n\n      const target = coordinates[0][0] ?\n        coordinates[0][0] : coordinates[0][0][0];\n\n      // either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]\n      // console.log(e.features[0].properties.POA_NAME21)\n      var description =\n        e.features[0].properties.POA_NAME21 + \": \" +\n        e.features[0].state.ensmin + \" to \" +\n        e.features[0].state.ensmax + \" 35°C+ days\";\n      \n      // Ensure that if the map is zoomed out such that multiple\n      // copies of the feature are visible, the popup appears\n      // over the copy being pointed to.\n      // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {\n      // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;\n      // }\n      \n      // Populate the popup and set its coordinates\n      // based on the feature found.\n      popup.setLngLat(coordinates).setHTML(description).addTo(map);\n    });\n      \n    map.on(\"mouseleave\", \"places\", function () {\n      map.getCanvas().style.cursor = \"\";\n      popup.remove();\n    });\n\n  });\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"\nviewof selectedPeriod = Inputs.radio([\"1995\", \"2030\", \"2050\"], { value: \"1995\" })\n\nviewof selectedScenario = Inputs.radio(\n  new Map([\n    [\"Medium emissions\", \"rcp45diff\"],\n    [\"High emissions\", \"rcp85diff\"]\n  ]),\n  { value: \"rcp45diff\", disabled: selectedPeriod == \"1995\" })\n\n// override scenario with historical if 1995 is selected\nactualScenario = (selectedPeriod == \"1995\" ? \"historical\" : selectedScenario)\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"\n// start with a search box to narrow postcodes and suburbs down\nviewof areaSearch = Inputs.search(postcodeSuburbMap, {\n  placeholder: \"Enter your postcode or suburb\"\n});\n\n// display a menu of results and a search button when we're down to 30 results\n\nviewof selectedPostcode =\n  areaSearch.length > 0 && areaSearch.length < 100 ?\n    Inputs.select(areaSearch, {\n      format: d => `${d.SAL_NAME21} (${d.POA_NAME21})`\n    }) :\n    md``\n\nviewof goBtn =\n  areaSearch.length > 0 && areaSearch.length < 100 ?\n    Inputs.button(`Go`, {\n      reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)\n    }) :\n  md``\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"projections = FileAttachment(\"/data/news-stats-postcodes-short.csv\")\n  .csv({ typed: true });\n\npostcodeSuburbMap = FileAttachment(\"/data/postcode-suburb-map.csv\")\n  .csv();\n// postcodeList = FileAttachment(\"/data/postcode-list.csv\").csv();\n\n// filter data here (note postcodes need to be re-padded b/c observable's type\n// inference makes them numeric)\nfilteredProjections = projections\n  .filter(\n    d =>\n      (d.file_period == selectedPeriod) &&\n      (d.file_scenario == actualScenario))\n  .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"\nyellowRedFill = [\n  0,   \"#ffffb2\",\n  5,   \"#fed976\",\n  10,  \"#feb24c\",\n  20,  \"#fd8d3c\",\n  40,  \"#f03b20\",\n  80,  \"#bd0026\"\n]\nyellowRedStroke = [\n  0,   \"#ffff46\",\n  5,   \"#fdbf1a\",\n  10,  \"#f68e01\",\n  20,  \"#e86302\",\n  40,  \"#bf240d\",\n  80,  \"#8e001c\"\n]\n\nrainbowFill = [\n  0,   \"#3288bd\",\n  7,   \"#99d594\",\n  14,  \"#e6f598\",\n  30,  \"#ffffbf\",\n  90,  \"#fee08b\",\n  180, \"#fc8d59\",\n  366, \"#d53e4f\"\n]\nrainbowStroke = [\n  0,   \"#26668e\",\n  7,   \"#5bbc53\",\n  14,  \"#d0ec3e\",\n  30,  \"#ffff4f\",\n  90,  \"#fdc62a\",\n  180, \"#fa5305\",\n  366, \"#a92534\"\n]\n\n// when the filtered data changes, rejoin it to the map tiles and update the\n// colour scheme\nupdateMapData = {\n\n  filteredProjections.forEach(row => {\n    map.setFeatureState(\n      {\n        source: \"postcodes\",\n        sourceLayer: \"postcodeswgs84\",\n        id: row.postcode,\n      },\n      {\n        ensmean: row.ensmean,\n        ensmax: row.ensmax,\n        ensmin: row.ensmin\n      }\n    );\n  });\n\n  if (actualScenario.endsWith(\"diff\")) {\n      // extra days in future: yellow-red\n      console.log(actualScenario + \": switching to yellow-red\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedFill]\n        ]);\n      map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...yellowRedStroke]\n        ]);\n    } else {\n      // historical: diverging rainbow\n      console.log(actualScenario + \": switching to rainbow\")\n      map.setPaintProperty(\"postcode-colors\", \"fill-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowFill]\n        ]);\n      map.setPaintProperty(\"postcode-colors\", \"fill-outline-color\",\n        [\"case\", [\"==\", [\"feature-state\", \"ensmean\"], null], \"#666666\",\n          [\"interpolate\", [\"linear\"], [\"feature-state\", \"ensmean\"],\n            ...rainbowStroke]\n        ]);\n  }\n\n  // also set fill pattern if highlighted\n  // map.setPaintProperty(\"postcode-colors\", \"fill-patterm\",\n  //     [\"case\", [\"==\", [\"feature-state\", \"isFocus\"], true],\n  //       \"focusStripes\",\n  //       // null?\n  //     ]);\n\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"function zoomToPostcode(postcode) {\n\n  // TODO - stop highlighting previously selected postcode\n  \n  // get the postcode's feature\n  const targetPostcodeFeature = map.querySourceFeatures(\"postcodes\", {\n    sourceLayer: \"postcodeswgs84\",   // postcodeswgs84?\n    filter: [\"==\", \"POA_NAME21\", postcode]\n  });\n\n  if (targetPostcodeFeature.length != 1) {\n    console.error(\"Can only zoom to 1 postcode at a time, not \",\n      targetPostcodeFeature.length);\n  }\n\n  // get the feature's geometry\n  const geom = targetPostcodeFeature[0].geometry.coordinates[0];\n\n  // reduce the geometry to bounds\n  const postcodeBounds = geom.reduce(\n    (accum, current) => accum.extend(current),        \n    new maplibregl.LngLatBounds(geom[0], geom[0]));\n\n  // zoom to postcode\n  map.fitBounds(postcodeBounds, {\n    padding: {top: 40, bottom:30, left: 10, right: 10},\n    maxZoom: 12\n  });\n\n  // highlight postcode?\n  map.setFeatureState(\n    {\n      source: \"postcodes\",\n      sourceLayer: \"postcodeswgs84\",\n      id: postcode,\n    },\n    { inFocus: true }\n  );\n  \n\n  // display info panel\n  setTimeout(MicroModal.show(\"modal-focused-postcode\"), 1000)\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"// classes: focusPanel\nfocusedPostcodeProjections = projections\n  .filter(\n      d => d.geo_name == selectedPostcode.POA_NAME21)\n    // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, \"0\") }));\n\n// which suburbs are in this postcode?\nsuburbsInPostcode = postcodeSuburbMap\n  .filter(d => d.POA_NAME21 == selectedPostcode.POA_NAME21)\n  .map(d => d.SAL_NAME21)\n  .join(\", \")\n\n// display info as a table (just for dianostic purposes)\n// viewof infoTable = Inputs.table(focusedPostcodeProjections)\n\n// get the different scenarios out\nfiguresNow = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"historical\")\nfigures2030Med = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45\" && d.file_period == \"2030\")\nfigures2030MedDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45diff\" && d.file_period == \"2030\")\nfigures2050Med = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45\" && d.file_period == \"2050\")\nfigures2050MedDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp45diff\" && d.file_period == \"2050\")\n\nfigures2030High = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85\" && d.file_period == \"2030\")\nfigures2030HighDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85diff\" && d.file_period == \"2030\")\nfigures2050High = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85\" && d.file_period == \"2050\")\nfigures2050HighDiff = focusedPostcodeProjections\n  .filter(d => d.file_scenario == \"rcp85diff\" && d.file_period == \"2050\")\n"},{"methodName":"interpretQuiet","source":"shinyInput('map')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPeriod')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedScenario')"},{"methodName":"interpretQuiet","source":"shinyInput('areaSearch')"},{"methodName":"interpretQuiet","source":"shinyInput('selectedPostcode')"},{"methodName":"interpretQuiet","source":"shinyInput('goBtn')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../news";

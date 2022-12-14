@@ -1,14 +1,5 @@
 <!-- initialise miromodal.js -->
 
-```{ojs}
-//| include: false
-micro = require("micromodal@0.4.10")
-micro.init({
-  awaitOpenAnimation: true,
-  awaitCloseAnimation: true
-});
-```
-
 ::::::: {#modal-useremix .modal .micromodal-slide aria-hidden="true"}
 :::::: {.modal__overlay tabindex="-1" data-micromodal-close="true"}
 ::::: {.modal__container role="dialog" aria-modal="true" aria-labelledby="modal-useremix-title"}

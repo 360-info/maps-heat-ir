@@ -4,6 +4,8 @@ title: Future heat
 description: Subtitle with emphasis here
 format:
   360-embed-html: default
+css:
+  - https://cdn.jsdelivr.net/npm/maplibre-gl@2.1.9/dist/maplibre-gl.css
 resources:
   # - news-heat-postcodes-featuremedia.png
   - style.json
@@ -13,6 +15,14 @@ resources:
   # - font/*
   # - font/*/*
 ---
+
+```{ojs}
+micro = require("micromodal@0.4.10")
+micro.init({
+  awaitOpenAnimation: true,
+  awaitCloseAnimation: true
+});
+```
 
 {{< include _popup-buttons.qmd >}}
 
@@ -94,6 +104,48 @@ viewof map = {
     //         "fill-pattern": "focusStripes",
     //     }
     // });
+
+    /* popup */
+
+    const popup = new maplibregl.Popup({
+      closeButton: false,
+      closeOnClick: false,
+      className: "map-popup"
+    });
+
+    map.on("click", "postcode-colors", function(e) {
+      // Change the cursor style as a UI indicator.
+      map.getCanvas().style.cursor = "pointer";
+
+      const coordinates = e.features[0].geometry.coordinates;
+
+      const target = coordinates[0][0] ?
+        coordinates[0][0] : coordinates[0][0][0];
+
+      // either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]
+      // console.log(e.features[0].properties.POA_NAME21)
+      var description =
+        e.features[0].properties.POA_NAME21 + ": " +
+        e.features[0].state.ensmin + " to " +
+        e.features[0].state.ensmax + " 35°C+ days";
+      
+      // Ensure that if the map is zoomed out such that multiple
+      // copies of the feature are visible, the popup appears
+      // over the copy being pointed to.
+      // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      // }
+      
+      // Populate the popup and set its coordinates
+      // based on the feature found.
+      popup.setLngLat(coordinates).setHTML(description).addTo(map);
+    });
+      
+    map.on("mouseleave", "places", function () {
+      map.getCanvas().style.cursor = "";
+      popup.remove();
+    });
+
   });
 
 
