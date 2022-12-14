@@ -125,6 +125,7 @@
 
   /* to maintain readability over a map */
   z-index: 1000;
+  background-color: #ffffffcc;
 }
 
 .modalpanelitems {
