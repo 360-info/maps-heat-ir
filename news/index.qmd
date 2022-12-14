@@ -355,7 +355,7 @@ function zoomToPostcode(postcode) {
   
 
   // display info panel
-  setTimeout(MicroModal.show("modal-focused-postcode"), 1000)
+  setTimeout(micro.show("modal-focused-postcode"), 1000)
 
 }
 ```
