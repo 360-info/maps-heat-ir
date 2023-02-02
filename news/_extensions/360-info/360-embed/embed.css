@@ -70,6 +70,7 @@ header#title-block-header {
   z-index: 1000;
   position: absolute;
   bottom: 0px;
+  left: 0;
   background-color: #00000066;
   color: white;
   padding: 8px;
