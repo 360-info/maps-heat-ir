@@ -175,7 +175,9 @@ actualScenario = (selectedPeriod == "1995" ? "historical" : selectedScenario)
 
 // start with a search box to narrow postcodes and suburbs down
 viewof areaSearch = Inputs.search(postcodeSuburbMap, {
-  placeholder: "Enter your postcode or suburb"
+  placeholder: "Enter your postcode or suburb",
+  // don't show the number of results
+  format: () => ``
 });
 
 // display a menu of results and a search button when we're down to 30 results

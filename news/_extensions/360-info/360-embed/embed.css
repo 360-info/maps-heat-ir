@@ -81,11 +81,52 @@ header#title-block-header {
 .areaInputForm {
   z-index: 1000;
   position: absolute;
-  top: 50px;
+  top: 100px;
+  left: calc(50% - 158px);
   color: black;
-  padding: 8px;
+  padding: 2px 2px 0px 2px;
   width: calc(100vw - 16px);
   margin-bottom: 0;
+  width: 316px;
+  background: #ffffffcc;
+  /* border-radius: 8px; */
+}
+
+.areaInputForm div + div {
+  margin-block-start: 10px;
+}
+
+/* inputs.select doesn't respect width option properly... */
+.areaInputForm select, .areaInputForm form input, .areaInputForm button {
+  width: 300px;
+  position: relative;
+  left: 6px;
+  border: none;
+}
+
+.areaInputForm select, .areaInputForm form input {
+  background: none;
+  color: black;
+}
+
+.areaInputForm form input {
+  border-bottom: 1px solid black;
+}
+
+.areaInputForm button {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px #00000022;
+  margin-bottom: 10px;
+}
+
+.areaInputForm input::placeholder {
+  color: black;
+}
+
+/* ... and the "results" part of the text input still reserves space :( */
+.areaInputForm form output {
+  flex: 0;
 }
 
 .focusPanel {
