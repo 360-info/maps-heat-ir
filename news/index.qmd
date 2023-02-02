@@ -301,7 +301,7 @@ updateMapData = {
         ]);
   }
 
-  // also set fill pattern if highlighted
+  // TODO - also set fill pattern if highlighted
   // map.setPaintProperty("postcode-colors", "fill-patterm",
   //     ["case", ["==", ["feature-state", "isFocus"], true],
   //       "focusStripes",
@@ -320,7 +320,7 @@ function zoomToPostcode(postcode) {
   
   // get the postcode's feature
   const targetPostcodeFeature = map.querySourceFeatures("postcodes", {
-    sourceLayer: "postcodeswgs84",   // postcodeswgs84?
+    sourceLayer: "postcodeswgs84",
     filter: ["==", "POA_NAME21", postcode]
   });
 
