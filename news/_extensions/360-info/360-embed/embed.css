@@ -71,8 +71,8 @@ header#title-block-header {
   position: absolute;
   bottom: 0px;
   left: 0;
-  background-color: #00000066;
-  color: white;
+  background-color: #ffffffcc;
+  color: black;
   padding: 8px;
   width: calc(100vw - 16px);
   margin-bottom: 0;

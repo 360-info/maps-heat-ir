@@ -157,7 +157,13 @@ viewof map = {
 //| label: controls
 //| classes: inputForm
 
-viewof selectedPeriod = Inputs.radio(["1995", "2030", "2050"], { value: "1995" })
+viewof selectedPeriod = Inputs.radio(
+  new Map([
+    ["1995",           "1995"],
+    ["Change in 2030", "2030"],
+    ["Change in 2050", "2050"]
+  ]),
+  { value: "1995" });
 
 viewof selectedScenario = Inputs.radio(
   new Map([
