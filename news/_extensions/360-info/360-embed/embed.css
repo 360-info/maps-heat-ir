@@ -114,7 +114,9 @@ header#title-block-header {
 }
 
 .areaInputForm button {
-  background: white;
+  background: #36a7e9;
+  color: white !important;
+  padding: 10px 0;
   border-radius: 8px;
   box-shadow: 0px 5px 5px #00000022;
   margin-bottom: 10px;

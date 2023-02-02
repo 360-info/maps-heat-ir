@@ -191,7 +191,7 @@ viewof selectedPostcode =
 
 viewof goBtn =
   areaSearch.length > 0 && areaSearch.length < 100 ?
-    Inputs.button(`Go`, {
+    Inputs.button(`🔍 Zoom in`, {
       reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)
     }) :
   md``
