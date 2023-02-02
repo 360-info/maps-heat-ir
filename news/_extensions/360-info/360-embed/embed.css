@@ -151,3 +151,35 @@ header#title-block-header {
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1rem;
 }
+
+/* style info box when you zoom in */
+#modal-focused-postcode-content {
+  text-align: center;
+}
+
+#modal-focused-postcode-content h3 {
+  text-transform: uppercase;
+}
+
+#modal-focused-postcode-content p {
+  color: #666666;
+  font-size: 75%;
+}
+
+#modal-focused-postcode-content p .projection-range {
+  font-size: 200%;
+  font-weight: 900;
+  color: black;
+}
+
+#modal-focused-postcode-content p .projection-range.projection-recent {
+  color: #36a7e9;
+}
+
+#modal-focused-postcode-content p .projection-range.projection-medium {
+  color: orange;
+}
+
+#modal-focused-postcode-content p .projection-range.projection-high {
+  color: firebrick;
+}

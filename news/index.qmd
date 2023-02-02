@@ -373,18 +373,18 @@ function zoomToPostcode(postcode) {
 
 <!-- the panel with further postcode-specific information pops up as a modal -->
 
-::::::: {#modal-focused-postcode .modal .micromodal-slide aria-hidden="true"}
-:::::: {.modal__overlay tabindex="-1" data-micromodal-close="true"}
-::::: {.modal__container role="dialog" aria-modal="true" aria-labelledby="modal-focused-postcode-title"}
+:::::::: {#modal-focused-postcode .modal .micromodal-slide aria-hidden="true"}
+::::::: {.modal__overlay tabindex="-1" data-micromodal-close="true"}
+:::::: {.modal__container role="dialog" aria-modal="true" aria-labelledby="modal-focused-postcode-title"}
 
 <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
 
 <header>
-## ${selectedPostcode.POA_NAME21} {#modal-focused-postcode-title}
-#### ${suburbsInPostcode}
+## Postcode ${selectedPostcode.POA_NAME21} {#modal-focused-postcode-title}
+<!-- #### ${suburbsInPostcode} -->
 </header>
 
-:::: {#modal-focused-postcode-content}
+::::: {#modal-focused-postcode-content}
 ```{ojs}
 //| label: info-panel
 // classes: focusPanel
@@ -394,10 +394,11 @@ focusedPostcodeProjections = projections
     // .map(d => ({ ...d, postcode: String(d.geo_name).padStart(4, "0") }));
 
 // which suburbs are in this postcode?
-suburbsInPostcode = postcodeSuburbMap
-  .filter(d => d.POA_NAME21 == selectedPostcode.POA_NAME21)
-  .map(d => d.SAL_NAME21)
-  .join(", ")
+// not showing this now! too much
+// suburbsInPostcode = postcodeSuburbMap
+//   .filter(d => d.POA_NAME21 == selectedPostcode.POA_NAME21)
+//   .map(d => d.SAL_NAME21)
+//   .join(", ")
 
 // display info as a table (just for dianostic purposes)
 // viewof infoTable = Inputs.table(focusedPostcodeProjections)
@@ -424,16 +425,66 @@ figures2050HighDiff = focusedPostcodeProjections
   .filter(d => d.file_scenario == "rcp85diff" && d.file_period == "2050")
 ```
 
-**Recently:** up to **${figuresNow[0].ensmin} to ${figuresNow[0].ensmax}** 35°C+ days
+### Recently
 
-Up to **an extra ${figures2030MedDiff[0].ensmin} to ${figures2030MedDiff[0].ensmax}** 35°C+ days in a typical year by 2030 under **medium emissions**, and **an extra ${figures2050MedDiff[0].ensmin} to ${figures2050MedDiff[0].ensmax}** by 2050.
+:::: {.columns}
+:::{.column width="25%"}
+:::
+:::{.column width="50%"}
+Up to
 
-Up to **an extra ${figures2030HighDiff[0].ensmin} to ${figures2030HighDiff[0].ensmax}** 35°C+ days in a typical year by 2030 under **High emissions**, and **an extra ${figures2050HighDiff[0].ensmin} to ${figures2050HighDiff[0].ensmax}** by 2050.
+[${figuresNow[0].ensmin} to ${figuresNow[0].ensmax}]{class="projection-range projection-recent"}
 
+35°C+ days in a typical year
+:::
+:::{.column width="25%"}
+:::
+::::
+
+### By 2030
+
+:::: {.columns}
+:::{.column width="50%"}
+Up to
+
+[${figures2030MedDiff[0].ensmin} to ${figures2030MedDiff[0].ensmax}]{class="projection-range projection-medium"}
+
+more 35°C+ days under **medium emissions**
+:::
+:::{.column width="50%"}
+Up to
+
+[${figures2030HighDiff[0].ensmin} to ${figures2030HighDiff[0].ensmax}]{class="projection-range projection-high"}
+
+more 35°C+ days under **high emissions**
+
+in a typical year
+:::
+::::
+
+### By 2050
+
+::::{.columns}
+:::{.column width="50%"}
+Up to
+
+[${figures2050MedDiff[0].ensmin} to ${figures2050MedDiff[0].ensmax}]{class="projection-range projection-medium"}
+
+more 35°C+ days under **medium emissions**
+:::
+:::{.column width="50%"}
+Up to
+
+[${figures2050HighDiff[0].ensmin} to ${figures2050HighDiff[0].ensmax}]{class="projection-range projection-high"}
+
+more 35°C+ days under **high emissions**
+:::
 ::::
 
 :::::
+
 ::::::
 :::::::
+::::::::
 
 {{< include _popup-dialogs.qmd >}}
