@@ -195,6 +195,8 @@ viewof goBtn =
       reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)
     }) :
   md``
+
+areaWarn = areaSearch.length == 0 ? md`❌ No areas matched this search` : md``
 ```
 
 

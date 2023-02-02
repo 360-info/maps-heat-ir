@@ -97,11 +97,12 @@ header#title-block-header {
 }
 
 /* inputs.select doesn't respect width option properly... */
-.areaInputForm select, .areaInputForm form input, .areaInputForm button {
+.areaInputForm select, .areaInputForm form input, .areaInputForm button, .areaInputForm p {
   width: 300px;
   position: relative;
   left: 6px;
   border: none;
+  margin: 0;
 }
 
 .areaInputForm select, .areaInputForm form input {
@@ -119,6 +120,9 @@ header#title-block-header {
   padding: 10px 0;
   border-radius: 8px;
   box-shadow: 0px 5px 5px #00000022;
+  margin-bottom: 10px;
+}
+.areaInputForm p {
   margin-bottom: 10px;
 }
 
