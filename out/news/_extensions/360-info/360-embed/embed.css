@@ -90,6 +90,13 @@ header#title-block-header {
   width: 316px;
   background: #ffffffcc;
   /* border-radius: 8px; */
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.areaInputForm.hide {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .areaInputForm div + div {
