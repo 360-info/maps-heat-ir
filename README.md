@@ -18,6 +18,8 @@ Data in these charts comes from:
 
 ## Reproduce the analysis
 
+> **Note:** this repo just contains the interactive map and processed data. If you're looking to reproduce the processed data from the original DPIE collections, you can find the analysis in [360-info/climate-projections-narclim15](https://github.com/360-info/climate-projections-narclim15)
+
 ### 💨 Quickstart: use the dev container
 
 This project comes with a ready-to-use [dev container](https://code.visualstudio.com/docs/remote/containers) that includes everything you need to reproduce the analysis (or do a similar one of your own!), including [R](https://r-project.org) and [Quarto](https://quarto.org).
