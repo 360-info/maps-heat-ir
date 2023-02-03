@@ -182,12 +182,19 @@ viewof selectedPostcode =
 
 viewof goBtn =
   areaSearch.length > 0 && areaSearch.length < 100 ?
-    Inputs.button(`🔍 Zoom in`, {
+    Inputs.button(`🔍 Find`, {
       reduce: () => zoomToPostcode(selectedPostcode.POA_NAME21)
     }) :
   md``
 
-areaWarn = areaSearch.length == 0 ? md`❌ No areas matched this search` : md``
+// need a switch for when our tile search fails due to a postcode being too
+// small (bit of a workaround for not having the time to re-do the tiles!)
+mutable tileSearchFailed = false;
+
+areaWarn =
+  tileSearchFailed ?
+    md`🔍 This postcode's quite small — zoom in a bit and search again.` :
+    areaSearch.length == 0 ? md`❌ No areas matched this search` : md``
 ```
 
 
@@ -312,6 +319,7 @@ updateMapData = {
 function zoomToPostcode(postcode) {
 
   // TODO - stop highlighting previously selected postcode
+  console.log("Starting postcode search for " + postcode)
   
   // get the postcode's feature
   const targetPostcodeFeature = map.querySourceFeatures("postcodes", {
@@ -322,6 +330,7 @@ function zoomToPostcode(postcode) {
   if (targetPostcodeFeature.length != 1) {
     console.error("Can only zoom to 1 postcode at a time, not ",
       targetPostcodeFeature.length);
+    mutable tileSearchFailed = true;
   }
 
   // get the feature's geometry
