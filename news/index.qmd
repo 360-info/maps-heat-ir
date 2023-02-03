@@ -94,57 +94,41 @@ viewof map = {
       map.addImage("focusStripes", image);
     });
 
-    // TODO - add an extra stripey layer on top for the highlighted postcode
-    // map.addLayer({
-    //   id: "postcode-focused",
-    //   source: "postcodes",
-    //   "source-layer": "postcodeswgs84",
-    //   type: "fill",
-    //   "filter": ["==", ["feature-state", "isFocus"], true],
-    //     "paint": {
-    //         "fill-pattern": "focusStripes",
-    //     }
-    // });
-
     /* popup */
 
     const popup = new maplibregl.Popup({
-      closeButton: false,
+      closeButton: true,
       closeOnClick: false,
       className: "map-popup"
     });
 
     map.on("click", "postcode-colors", function(e) {
-      // Change the cursor style as a UI indicator.
+      
+      // change the cursor style as a ui indicator.
+      console.log("Mouse entering...")
       map.getCanvas().style.cursor = "pointer";
 
-      const coordinates = e.features[0].geometry.coordinates;
+      // display a warning if projections aren't available, or show them for
+      // this layer if they are
 
-      const target = coordinates[0][0] ?
-        coordinates[0][0] : coordinates[0][0][0];
+      const noProjectionsMessage =
+        "We don't have projections for this postcode, but try another nearby.";
 
-      // either coordinates[0][0] (if it's Array(2)) or coordinates[0][0][0]
-      // console.log(e.features[0].properties.POA_NAME21)
+      var projectionMessage =
+        "<h3>Postcode " + e.features[0].properties.POA_NAME21 + "</h3>" +
+        "<p>Up to <strong>" + e.features[0].state.ensmin + " to " +
+                e.features[0].state.ensmax +
+                  (selectedPeriod == "1995" ? "" : " more") +
+                "</strong> 35°C+ days in a typical year around " +
+                  selectedPeriod + "</p>"
+
       var description =
-        e.features[0].properties.POA_NAME21 + ": " +
-        e.features[0].state.ensmin + " to " +
-        e.features[0].state.ensmax + " 35°C+ days";
+        (e.features[0].state.ensmin === undefined
+        | e.features[0].state.ensmax === undefined) ?
+        noProjectionsMessage : projectionMessage;
       
-      // Ensure that if the map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      // }
-      
-      // Populate the popup and set its coordinates
-      // based on the feature found.
-      popup.setLngLat(coordinates).setHTML(description).addTo(map);
-    });
-      
-    map.on("mouseleave", "places", function () {
-      map.getCanvas().style.cursor = "";
-      popup.remove();
+      // populate popup; locate based on mouse's back-projected position
+      popup.setLngLat(e.lngLat).setHTML(description).addTo(map);
     });
 
   });
