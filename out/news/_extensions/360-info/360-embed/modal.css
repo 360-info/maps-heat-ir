@@ -121,14 +121,15 @@
   align-items: end;
   gap: 0.25rem;
 
-  font-size: smaller;
+  font-size: 80%;
 
   /* to maintain readability over a map */
   z-index: 1000;
+  background-color: #ffffffcc;
 }
 
 .modalpanelitems {
-  font-size: medium;
+  font-size: 125%;
   display: flex;
   flex-flow: row;
   justify-content: end;
@@ -144,10 +145,23 @@
   hyphens: manual;
 }
 
+/* shrink modal panel text at small widths */
+@media (max-width: 45em) {
+  .modalpanel p {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 34em) {
+  .modalpanel p {
+    font-size: 70%;
+  }
+}
+
 .modalpanel a {
   text-decoration: none;
   text-transform: uppercase;
-  color: #36a7e9;
+  color: black;
   font-weight: bold;
 }
 
