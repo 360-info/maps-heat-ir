@@ -81,7 +81,7 @@ header#title-block-header {
 .areaInputForm {
   z-index: 1000;
   position: absolute;
-  top: 75px;
+  top: 100px;
   left: calc(50% - 158px);
   color: black;
   padding: 2px 2px 0px 2px;
