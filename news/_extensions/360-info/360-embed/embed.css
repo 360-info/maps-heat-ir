@@ -183,3 +183,12 @@ header#title-block-header {
 #modal-focused-postcode-content p .projection-range.projection-high {
   color: firebrick;
 }
+
+/* projection detail: show either a warning or modal content */
+#no-projections, #projection-content {
+  display: none;
+}
+
+#no-projections.show, #projection-content.show {
+  display: block;
+}
