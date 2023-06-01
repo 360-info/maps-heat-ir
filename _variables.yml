@@ -1,6 +1,6 @@
 newsembed:
   before: |
-    &lt;iframe allow=&quotfullscreen&quot allowfullscreen=&quottrue&quot src=&quot;
+    &lt;iframe allow=&quot;fullscreen; clipboard-write self https://feb2023.360info-heatmaps-narclim.pages.dev/&quot; allowfullscreen=&quot;true&quot; src=&quot;
   url: https://feb2023.360info-heatmaps-narclim.pages.dev/news/
   after: |
-    &quot; title="Interactive: future heat" style="width:100%; height:500px; border:none; background-color: #eeeeee;" scrolling="no">&lt;/iframe&gt;
+    &quot; title=&quot;Interactive: future heat&quot; style=&quot;width:100%; height:500px; border:none; background-color: #eeeeee;&quot; scrolling=&quot;no&quot;>&lt;/iframe&gt;
